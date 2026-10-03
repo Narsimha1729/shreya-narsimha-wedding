@@ -27,7 +27,7 @@ export const WEDDING_CONFIG = {
     ceremony: {
       name: 'Marigold Regency',
       address: 'Shiv Road, Shirdi, Taluka Rahata, Ahmednagar 423109',
-      time: '18 December · Haldi & Sangeet · 19 December · Wedding',
+      time: '18 December evening · Haldi & Sangeet · 19 December early morning · Wedding',
       photo: asset('/assets/images/gallery/02.jpeg'),
       mapQuery: 'https://maps.app.goo.gl/YJ7bJCAx2uCp3Bgu7',
     },

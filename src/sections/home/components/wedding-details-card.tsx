@@ -1,11 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
-import {
-  formatWeddingTime,
-  generateGoogleCalendarLink,
-  generateMapLink,
-} from '@/lib/wedding-utils';
+import { generateMapLink } from '@/lib/wedding-utils';
 import type { WeddingConfigType } from '@/types';
 import { useTranslation } from 'react-i18next';
 import { useTranslate } from '@/locales';
@@ -13,25 +9,28 @@ import { WEDDING_CONFIG } from '@/constants';
 
 interface WeddingDetailsCardProps {
   date: Date;
+  weddingDate: Date;
   venue: WeddingConfigType['venue'];
   dateConfirmed: boolean;
 }
 
 export const WeddingDetailsCard = ({
   date,
+  weddingDate,
   venue,
   dateConfirmed,
 }: WeddingDetailsCardProps) => {
   const { currentLang } = useTranslate();
   const { t } = useTranslation('home');
 
-  const calendarEvent = {
-    title: t('details.our-wedding-day'),
-    start: date,
-    end: new Date(date.getTime() + 5 * 60 * 60 * 1000), // 5 hours later
-    description: t('details.join-us'),
-    location: venue.ceremony.address,
-  };
+  const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&${new URLSearchParams(
+    {
+      text: `${WEDDING_CONFIG.bride.name} & ${WEDDING_CONFIG.groom.name}`,
+      dates: '20261218/20261220',
+      details: t('details.join-us'),
+      location: `${venue.ceremony.name}, ${venue.ceremony.address}`,
+    }
+  ).toString()}`;
 
   return (
     <div className="py-20 bg-gradient-to-br from-white to-rose-50/50">
@@ -115,7 +114,7 @@ export const WeddingDetailsCard = ({
                   </div>
                 </div>
                 <p className="text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider mt-3">
-                  {t('details.day')}
+                  {t('details.haldi-sangeet')}
                 </p>
               </motion.div>
 
@@ -153,12 +152,12 @@ export const WeddingDetailsCard = ({
                 className="text-center group-hover:scale-105 transition-transform duration-300 flex-1 sm:flex-none"
               >
                 <div className="bg-gradient-to-br from-emerald-500 to-teal-600 text-white rounded-2xl p-4 sm:p-6 shadow-lg mb-2 h-24 sm:h-28 md:h-32 lg:h-36 flex flex-col items-center justify-center min-w-[100px] sm:min-w-[120px] md:min-w-[140px]">
-                  <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-none">
-                    {formatWeddingTime(date, currentLang.numberFormat.code)}
+                  <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-none">
+                    {weddingDate.getDate()}
                   </div>
                 </div>
                 <p className="text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider mt-3">
-                  {t('details.time')}
+                  {t('details.wedding-day')}
                 </p>
               </motion.div>
             </div>
@@ -180,17 +179,15 @@ export const WeddingDetailsCard = ({
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-3">
                     <span className="text-xl sm:text-2xl md:text-3xl">🗓️</span>
                     <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif text-gray-800 font-bold text-center leading-tight">
-                      {date.toLocaleDateString(currentLang.numberFormat.code, {
-                        weekday: 'long',
-                      })}
+                      {t('details.weekend')}
                     </p>
                     <span className="text-xl sm:text-2xl md:text-3xl">🗓️</span>
                   </div>
                   <div className="w-16 sm:w-20 md:w-24 h-px bg-gradient-to-r from-transparent via-rose-400 to-transparent mx-auto mb-3"></div>
                   <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 font-medium">
+                    {date.getDate()}–{weddingDate.getDate()}{' '}
                     {date.toLocaleDateString(currentLang.numberFormat.code, {
                       month: 'long',
-                      day: 'numeric',
                       year: 'numeric',
                     })}
                   </p>
@@ -210,7 +207,7 @@ export const WeddingDetailsCard = ({
               className="text-center"
             >
               <motion.a
-                href={generateGoogleCalendarLink(calendarEvent)}
+                href={calendarUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, y: -2 }}
@@ -271,10 +268,10 @@ export const WeddingDetailsCard = ({
 
               <div className="bg-gray-50 rounded-xl p-4">
                 <p className="font-medium text-gray-800 text-sm sm:text-base">
-                  {t('details.time')}
+                  {t('details.when')}
                 </p>
                 <p className="text-purple-600 font-semibold text-sm sm:text-base">
-                  {venue.ceremony.time}
+                  {t('venue.ceremony-when')}
                 </p>
               </div>
 
@@ -303,7 +300,7 @@ export const WeddingDetailsCard = ({
           >
             <div className="text-center mb-6">
               <div className="inline-block bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full p-4 mb-4 group-hover:scale-110 transition-transform duration-300">
-                <div className="text-4xl">🎉</div>
+                <div className="text-4xl">🏨</div>
               </div>
               <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-2">
                 {t('details.reception')}
@@ -323,10 +320,10 @@ export const WeddingDetailsCard = ({
 
               <div className="bg-gray-50 rounded-xl p-4">
                 <p className="font-medium text-gray-800 text-sm sm:text-base">
-                  {t('details.time')}
+                  {t('details.when')}
                 </p>
                 <p className="text-emerald-600 font-semibold text-sm sm:text-base">
-                  {venue.reception.time}
+                  {t('venue.stay-when')}
                 </p>
               </div>
 

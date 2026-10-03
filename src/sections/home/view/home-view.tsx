@@ -92,6 +92,7 @@ export default function HomeView() {
       <section id="details" className="relative">
         <WeddingDetailsCard
           date={WEDDING_CONFIG.date}
+          weddingDate={WEDDING_CONFIG.weddingDate}
           venue={WEDDING_CONFIG.venue}
           dateConfirmed={WEDDING_CONFIG.dateConfirmed}
         />

@@ -14,39 +14,24 @@ export const EventSchedule = () => {
 
   const scheduleItems = [
     {
-      time: 'Morning',
-      event: t('schedule.guest-arrival'),
-      description: t('schedule.welcome-drinks'),
+      time: t('schedule.day-18'),
+      event: t('schedule.haldi'),
+      description: t('schedule.haldi-detail'),
     },
     {
-      time: 'Muhurtham',
-      event: t('schedule.wedding-ceremony'),
-      description: t('schedule.vows'),
+      time: t('schedule.day-18'),
+      event: t('schedule.sangeet'),
+      description: t('schedule.sangeet-detail'),
     },
     {
-      time: 'Midday',
-      event: t('schedule.photography'),
-      description: t('schedule.welcome-drink'),
+      time: t('schedule.day-19'),
+      event: t('schedule.wedding'),
+      description: t('schedule.wedding-detail'),
     },
     {
-      time: 'Evening',
-      event: t('schedule.reception-begins'),
-      description: t('schedule.dinner-celebration'),
-    },
-    {
-      time: 'Song',
-      event: t('schedule.first-dance'),
-      description: t('schedule.special-moment'),
-    },
-    {
-      time: 'Night',
-      event: t('schedule.dancing-party'),
-      description: t('schedule.celebration-continues'),
-    },
-    {
-      time: 'Farewell',
-      event: t('schedule.send-off'),
-      description: t('schedule.sparkler-farewell'),
+      time: t('schedule.days-stay'),
+      event: t('schedule.stay'),
+      description: t('schedule.stay-detail'),
     },
   ];
 

@@ -73,6 +73,9 @@ export const HeroSection = ({
                 {couple.groom.name}
               </h1>
               <div className="w-32 h-px bg-gradient-to-r from-transparent via-rose-200 to-transparent mx-auto" />
+              <p className="text-rose-100 mt-4 text-sm sm:text-base md:text-lg tracking-wide">
+                {t('hero.dates')}
+              </p>
             </motion.div>
 
             <motion.div

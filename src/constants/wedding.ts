@@ -2,9 +2,10 @@ const asset = (path: string) =>
   `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${path}`;
 
 export const WEDDING_CONFIG = {
-  /** Flip this on and set `date` when the muhurtham is confirmed. */
-  dateConfirmed: false,
-  date: new Date('2026-12-14T10:30:00+05:30'),
+  dateConfirmed: true,
+  /** First celebration. Countdown runs to this morning. */
+  date: new Date('2026-12-18T00:00:00+05:30'),
+  weddingDate: new Date('2026-12-19T00:00:00+05:30'),
   song: {
     title: 'Sukh Kalale',
     src: asset('/assets/audio/sukh-kalale.mp3'),
@@ -26,16 +27,17 @@ export const WEDDING_CONFIG = {
     ceremony: {
       name: 'Marigold Regency',
       address: 'Shiv Road, Shirdi, Taluka Rahata, Ahmednagar 423109',
-      time: 'Morning ceremony',
+      time: '18 December · Haldi & Sangeet · 19 December · Wedding',
       photo: asset('/assets/images/gallery/02.jpeg'),
       mapQuery: 'https://maps.app.goo.gl/YJ7bJCAx2uCp3Bgu7',
     },
     reception: {
-      name: 'Marigold Regency',
-      address: 'Shiv Road, Shirdi, Taluka Rahata, Ahmednagar 423109',
-      time: 'Evening celebration',
+      name: 'Hotel Sai Siddhi',
+      address:
+        'Shirdi–Nagar Road, opposite Sai Ashram, Shirdi, Taluka Rahata, Ahmednagar 423109',
+      time: 'Stay arranged for 18 and 19 December',
       photo: asset('/assets/images/gallery/03.jpeg'),
-      mapQuery: 'https://maps.app.goo.gl/YJ7bJCAx2uCp3Bgu7',
+      mapQuery: 'https://maps.app.goo.gl/M3RH2ye9YMattHkB7',
     },
   },
   gallery: [

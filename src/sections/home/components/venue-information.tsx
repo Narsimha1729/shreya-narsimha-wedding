@@ -70,7 +70,7 @@ export const VenueInformation = ({ venue }: VenueInformationProps) => {
                 </p>
                 <div className="inline-block bg-white/60 rounded-lg px-4 py-2 shadow-sm">
                   <p className="text-purple-700 font-medium text-sm sm:text-base">
-                    📅 {venue.ceremony.time}
+                    📅 {t('venue.ceremony-when')}
                   </p>
                 </div>
               </div>
@@ -117,7 +117,7 @@ export const VenueInformation = ({ venue }: VenueInformationProps) => {
             />
             <div className="text-center mb-8">
               <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-white text-3xl">🎵</span>
+                <span className="text-white text-3xl">🏨</span>
               </div>
               <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif text-gray-800 mb-2">
                 {t('venue.reception-time')}
@@ -135,7 +135,7 @@ export const VenueInformation = ({ venue }: VenueInformationProps) => {
                 </p>
                 <div className="inline-block bg-white/60 rounded-lg px-4 py-2 shadow-sm">
                   <p className="text-amber-700 font-medium text-sm sm:text-base">
-                    🍽️ {venue.reception.time}
+                    🏨 {t('venue.stay-when')}
                   </p>
                 </div>
               </div>

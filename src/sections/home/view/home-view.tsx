@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, type RefObject } from 'react';
 import { useScrollSpy } from '@/hooks/use-scroll-spy';
 import { LetterAnimation } from '@/components';
 import {
@@ -23,6 +23,15 @@ import { NAVIGATION_SECTIONS, WEDDING_CONFIG } from '@/constants';
 export default function HomeView() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [showLetter, setShowLetter] = useState(true);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const startMusic = () => {
+    const audio = audioRef.current;
+
+    if (!audio) return;
+
+    audio.play().catch(() => undefined);
+  };
 
   // Auto-detect active section using scroll spy
   const activeSection = useScrollSpy(
@@ -53,21 +62,53 @@ export default function HomeView() {
     setTimeout(() => setIsLoaded(true), 300);
   };
 
-  // Show letter animation first
-  if (showLetter) {
-    return (
-      <LetterAnimation
-        onOpen={handleLetterOpen}
-        coupleName={`${WEDDING_CONFIG.bride.name} & ${WEDDING_CONFIG.groom.name}`}
-      />
-    );
-  }
+  return (
+    <>
+      <audio
+        ref={audioRef}
+        loop
+        preload="auto"
+        playsInline
+        src={WEDDING_CONFIG.song.src}
+        aria-label={WEDDING_CONFIG.song.title}
+        className="fixed w-px h-px opacity-0 pointer-events-none"
+      >
+        <track kind="captions" srcLang="en" label={WEDDING_CONFIG.song.title} />
+      </audio>
+      {showLetter ? (
+        <LetterAnimation
+          onOpen={handleLetterOpen}
+          onStartMusic={startMusic}
+          coupleName={`${WEDDING_CONFIG.bride.name} & ${WEDDING_CONFIG.groom.name}`}
+        />
+      ) : (
+        <Invitation
+          isLoaded={isLoaded}
+          activeSection={activeSection}
+          audioRef={audioRef}
+          onScrollToSection={scrollToSection}
+        />
+      )}
+    </>
+  );
+}
 
+const Invitation = ({
+  isLoaded,
+  activeSection,
+  audioRef,
+  onScrollToSection,
+}: {
+  isLoaded: boolean;
+  activeSection: string;
+  audioRef: RefObject<HTMLAudioElement | null>;
+  onScrollToSection: (sectionId: string) => void;
+}) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50">
       <FloatingNavigation
         activeSection={activeSection}
-        onScrollToSection={scrollToSection}
+        onScrollToSection={onScrollToSection}
       />
 
       {/* Hero Section */}
@@ -75,7 +116,7 @@ export default function HomeView() {
         <HeroSection
           isLoaded={isLoaded}
           couple={WEDDING_CONFIG}
-          onScrollToSection={scrollToSection}
+          onScrollToSection={onScrollToSection}
         />
       </section>
 
@@ -127,12 +168,12 @@ export default function HomeView() {
       </section>
 
       {/* Music Player */}
-      <MusicPlayer />
+      <MusicPlayer audioRef={audioRef} />
 
       {/* Mobile Navigation FAB */}
       <NavigationFAB
         activeSection={activeSection}
-        onScrollToSection={scrollToSection}
+        onScrollToSection={onScrollToSection}
       />
 
       {/* Scroll Progress Indicator */}

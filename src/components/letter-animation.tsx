@@ -8,11 +8,13 @@ import { WEDDING_CONFIG } from '@/constants';
 
 interface LetterAnimationProps {
   onOpen: () => void;
+  onStartMusic: () => void;
   coupleName: string;
 }
 
 export const LetterAnimation = ({
   onOpen,
+  onStartMusic,
   coupleName,
 }: LetterAnimationProps) => {
   const { t } = useTranslation('home');
@@ -25,6 +27,7 @@ export const LetterAnimation = ({
   const [isHovered, setIsHovered] = useState(false);
 
   const handleClick = () => {
+    onStartMusic();
     setIsOpening(true);
     setTimeout(() => {
       onOpen();
@@ -109,6 +112,7 @@ export const LetterAnimation = ({
           >
             <motion.div
               className="relative cursor-pointer"
+              onPointerDown={onStartMusic}
               onClick={handleClick}
               onHoverStart={() => setIsHovered(true)}
               onHoverEnd={() => setIsHovered(false)}

@@ -1,15 +1,18 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect, type RefObject } from 'react';
 import { useTranslation } from 'react-i18next';
-import { WEDDING_CONFIG } from '@/constants';
 
 interface MusicPlayerProps {
   className?: string;
+  audioRef: RefObject<HTMLAudioElement | null>;
 }
 
-export default function MusicPlayer({ className = '' }: MusicPlayerProps) {
+export default function MusicPlayer({
+  className = '',
+  audioRef,
+}: MusicPlayerProps) {
   const { t } = useTranslation('home');
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -18,7 +21,6 @@ export default function MusicPlayer({ className = '' }: MusicPlayerProps) {
   const [hasInteracted, setHasInteracted] = useState(false);
   const [showWelcomeMessage, setShowWelcomeMessage] = useState(false);
   const [showAutoplayModal, setShowAutoplayModal] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -27,49 +29,30 @@ export default function MusicPlayer({ className = '' }: MusicPlayerProps) {
 
     const updateTime = () => setCurrentTime(audio.currentTime);
     const updateDuration = () => setDuration(audio.duration);
-    const handleEnded = () => setIsPlaying(false);
+
+    const markPlaying = () => {
+      setIsPlaying(true);
+      setAutoplayBlocked(false);
+      setHasInteracted(true);
+      setShowAutoplayModal(false);
+    };
+
+    const markPaused = () => setIsPlaying(false);
 
     audio.addEventListener('timeupdate', updateTime);
     audio.addEventListener('loadedmetadata', updateDuration);
-    audio.addEventListener('ended', handleEnded);
+    audio.addEventListener('play', markPlaying);
+    audio.addEventListener('pause', markPaused);
 
-    // Auto-play attempt
-    const attemptAutoPlay = async () => {
-      try {
-        await audio.play();
-        setIsPlaying(true);
-        setAutoplayBlocked(false);
-        setHasInteracted(true);
-      } catch {
-        setIsPlaying(false);
-        setAutoplayBlocked(true);
-        setHasInteracted(false);
-        // Show autoplay modal when blocked
-        setShowAutoplayModal(true);
-      }
-    };
-
-    // Try autoplay after a short delay
-    const timer = setTimeout(() => {
-      attemptAutoPlay();
-
-      // Show welcome message if autoplay fails after a delay
-      const welcomeTimer = setTimeout(() => {
-        setShowWelcomeMessage(true);
-        // Hide welcome message after 5 seconds
-        setTimeout(() => setShowWelcomeMessage(false), 5000);
-      }, 2000);
-
-      return () => clearTimeout(welcomeTimer);
-    }, 1500);
+    if (!audio.paused) markPlaying();
 
     return () => {
       audio.removeEventListener('timeupdate', updateTime);
       audio.removeEventListener('loadedmetadata', updateDuration);
-      audio.removeEventListener('ended', handleEnded);
-      clearTimeout(timer);
+      audio.removeEventListener('play', markPlaying);
+      audio.removeEventListener('pause', markPaused);
     };
-  }, []); // Empty dependency array is correct here
+  }, [audioRef]);
 
   const togglePlayPause = async () => {
     const audio = audioRef.current;
@@ -241,18 +224,6 @@ export default function MusicPlayer({ className = '' }: MusicPlayerProps) {
         }}
         className={`fixed bottom-24 right-6 z-50 ${className}`}
       >
-        {/* Hidden audio element */}
-        <audio
-          ref={audioRef}
-          loop
-          preload="auto"
-          src={WEDDING_CONFIG.song.src}
-          aria-label={WEDDING_CONFIG.song.title}
-        >
-          <track kind="captions" srcLang="en" label={WEDDING_CONFIG.song.title} />
-          Your browser does not support the audio element.
-        </audio>
-
         {/* Progress Ring */}
         <div className="relative">
           <svg

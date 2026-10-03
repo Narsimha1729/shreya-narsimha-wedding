@@ -9,15 +9,18 @@ import {
 import type { WeddingConfigType } from '@/types';
 import { useTranslation } from 'react-i18next';
 import { useTranslate } from '@/locales';
+import { WEDDING_CONFIG } from '@/constants';
 
 interface WeddingDetailsCardProps {
   date: Date;
   venue: WeddingConfigType['venue'];
+  dateConfirmed: boolean;
 }
 
 export const WeddingDetailsCard = ({
   date,
   venue,
+  dateConfirmed,
 }: WeddingDetailsCardProps) => {
   const { currentLang } = useTranslate();
   const { t } = useTranslation('home');
@@ -79,7 +82,24 @@ export const WeddingDetailsCard = ({
               </motion.div>
             </div>
 
-            {/* Date Display */}
+            {!dateConfirmed && (
+              <div className="text-center mb-4">
+                <img
+                  src={WEDDING_CONFIG.cover}
+                  alt="Shreya and Narsimha"
+                  className="w-full max-w-md mx-auto h-80 object-cover object-top rounded-3xl shadow-xl mb-8"
+                />
+                <h3 className="text-2xl sm:text-3xl font-serif text-gray-800 mb-3">
+                  {t('details.date-pending')}
+                </h3>
+                <p className="text-gray-600 max-w-xl mx-auto">
+                  {t('details.date-pending-help')}
+                </p>
+              </div>
+            )}
+
+            {dateConfirmed && (
+            <>
             <div className="flex flex-col sm:flex-row items-stretch justify-center gap-6 sm:gap-8 md:gap-12 mb-8">
               {/* Day */}
               <motion.div
@@ -214,6 +234,8 @@ export const WeddingDetailsCard = ({
                 {t('details.message')}
               </p>
             </motion.div>
+            </>
+            )}
           </div>
         </motion.div>
 
@@ -229,7 +251,7 @@ export const WeddingDetailsCard = ({
           >
             <div className="text-center mb-6">
               <div className="inline-block bg-gradient-to-r from-purple-100 to-indigo-100 rounded-full p-4 mb-4 group-hover:scale-110 transition-transform duration-300">
-                <div className="text-4xl">⛪</div>
+                <div className="text-4xl">🪔</div>
               </div>
               <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-2">
                 {t('details.ceremony')}
@@ -256,16 +278,18 @@ export const WeddingDetailsCard = ({
                 </p>
               </div>
 
-              <motion.a
-                href={generateMapLink(venue.ceremony.name)}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:shadow-lg transition-all duration-300"
-              >
-                📍 {t('details.get-directions')}
-              </motion.a>
+              {venue.ceremony.mapQuery ? (
+                <motion.a
+                  href={generateMapLink(venue.ceremony.mapQuery)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:shadow-lg transition-all duration-300"
+                >
+                  📍 {t('details.get-directions')}
+                </motion.a>
+              ) : null}
             </div>
           </motion.div>
 
@@ -306,16 +330,18 @@ export const WeddingDetailsCard = ({
                 </p>
               </div>
 
-              <motion.a
-                href={generateMapLink(venue.reception.name)}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:shadow-lg transition-all duration-300"
-              >
-                📍 {t('details.get-directions')}
-              </motion.a>
+              {venue.reception.mapQuery ? (
+                <motion.a
+                  href={generateMapLink(venue.reception.mapQuery)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:shadow-lg transition-all duration-300"
+                >
+                  📍 {t('details.get-directions')}
+                </motion.a>
+              ) : null}
             </div>
           </motion.div>
         </div>
@@ -346,7 +372,7 @@ export const WeddingDetailsCard = ({
               <div className="flex flex-col items-center">
                 <div className="text-xl sm:text-2xl mb-2">📱</div>
                 <p className="font-medium">{t('details.contact')}</p>
-                <p>+62 812 3456 7890</p>
+                <p>{t('details.contact-value')}</p>
               </div>
             </div>
           </div>

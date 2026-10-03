@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'next/navigation';
+import { WEDDING_CONFIG } from '@/constants';
 
 interface LetterAnimationProps {
   onOpen: () => void;
@@ -32,6 +33,11 @@ export const LetterAnimation = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-gradient-to-br from-rose-100 via-pink-50 to-purple-100 overflow-hidden">
+      <img
+        src={WEDDING_CONFIG.cover}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover opacity-25"
+      />
       {/* Background Decorations */}
       <div className="absolute inset-0">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-rose-200/30 rounded-full blur-3xl"></div>

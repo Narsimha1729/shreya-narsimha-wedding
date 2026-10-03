@@ -1,6 +1,8 @@
-# 💍 My Wedding App
+# Shreya & Narsimha
 
-An elegant and interactive digital wedding invitation app built with Next.js, TypeScript, and Framer Motion. This application provides a beautiful experience for inviting guests to your wedding with captivating animations and responsive design.
+A digital wedding invitation for Shreya and Narsimha. It opens like a letter, plays Sukh Kalale, and gathers their wedding photographs in one place.
+
+Built from the [Holymaiden/wedding-app](https://github.com/Holymaiden/wedding-app) template (MIT). The muhurtham and venue are not filled in yet. Set `dateConfirmed` to `true` and edit `src/constants/wedding.ts` when those details are ready.
 
 ## ✨ Key Features
 
@@ -45,7 +47,7 @@ An elegant and interactive digital wedding invitation app built with Next.js, Ty
 
 ### 🌐 Internationalization (i18n)
 
-- Multi-language support (Indonesian & English)
+- English and Kannada
 - React i18next integration
 - Dynamic language switching
 - Locale-specific date/time formatting

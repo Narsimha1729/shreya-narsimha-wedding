@@ -4,12 +4,17 @@ import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
+import { WEDDING_CONFIG } from '@/constants';
 
 interface CountdownTimerProps {
   targetDate: Date;
+  announced?: boolean;
 }
 
-export const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
+export const CountdownTimer = ({
+  targetDate,
+  announced = true,
+}: CountdownTimerProps) => {
   const { t } = useTranslation('home');
 
   const [timeLeft, setTimeLeft] = useState({
@@ -85,15 +90,32 @@ export const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
           className="mb-12"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-gray-800 mb-4">
-            {t('details.countdown-title')}
+            {announced
+              ? t('details.countdown-title')
+              : t('details.countdown-waiting-title')}
           </h2>
           <div className="w-24 h-px bg-rose-400 mx-auto mb-4"></div>
           <p className="text-gray-600 text-base sm:text-lg md:text-xl">
-            {t('details.countdown-subtitle')}
+            {announced
+              ? t('details.countdown-subtitle')
+              : t('details.countdown-waiting-subtitle')}
           </p>
         </motion.div>
 
-        {/* Countdown Grid */}
+        {!announced && (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
+            {WEDDING_CONFIG.gallery.slice(1, 5).map((image) => (
+              <img
+                key={image.src}
+                src={image.src}
+                alt={image.caption}
+                className="h-40 sm:h-52 w-full object-cover rounded-2xl shadow-md"
+              />
+            ))}
+          </div>
+        )}
+
+        {announced && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {timeUnits.map((unit, index) => (
             <motion.div
@@ -138,8 +160,9 @@ export const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
             </motion.div>
           ))}
         </div>
+        )}
 
-        {/* Message */}
+        {announced && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 20 }}
@@ -158,6 +181,7 @@ export const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
             </p>
           </div>
         </motion.div>
+        )}
       </div>
     </div>
   );

@@ -10,6 +10,33 @@ interface HeroSectionProps {
   onScrollToSection: (sectionId: string) => void;
 }
 
+const Portrait = ({
+  src,
+  name,
+  objectPosition,
+}: {
+  src: string;
+  name: string;
+  objectPosition: string;
+}) => (
+  <div className="text-center flex-shrink-0">
+    <div
+      role="img"
+      aria-label={name}
+      className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 rounded-full border-4 border-white/80 shadow-2xl mb-3 mx-auto"
+      style={{
+        backgroundImage: `url(${src})`,
+        backgroundSize: '240%',
+        backgroundPosition: objectPosition,
+        backgroundRepeat: 'no-repeat',
+      }}
+    />
+    <h3 className="font-serif text-white text-lg sm:text-xl md:text-2xl drop-shadow">
+      {name}
+    </h3>
+  </div>
+);
+
 export const HeroSection = ({
   isLoaded,
   couple,
@@ -18,88 +45,57 @@ export const HeroSection = ({
   const { t } = useTranslation('home');
 
   return (
-    <div className="h-screen bg-gradient-to-br from-rose-100 via-pink-50 to-purple-100 relative overflow-hidden">
-      {/* Background Decorations */}
-      <div className="absolute inset-0">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-rose-200/30 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200/30 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-200/20 rounded-full blur-3xl"></div>
-      </div>
+    <div className="h-screen relative overflow-hidden">
+      <img
+        src={couple.cover}
+        alt="Shreya and Narsimha"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-rose-950/35 to-black/75" />
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col h-full px-6 pt-10 sm:pt-18 md:pt-20">
+      <div className="relative z-10 flex flex-col h-full px-6 pt-16 sm:pt-20">
         <div className="flex-1 flex items-center justify-center">
           <div className="max-w-4xl mx-auto text-center">
-            {/* Main Heading */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 50 }}
               transition={{ duration: 1, delay: 0.2 }}
               className="mb-6 sm:mb-8"
             >
-              <div className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 mb-4 font-medium">
+              <div className="text-sm sm:text-base md:text-lg text-rose-100 mb-4 font-medium tracking-wide">
                 {t('hero.welcome')}
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif text-gray-800 mb-6 leading-tight">
-                Our
-                <span className="block bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
-                  Wedding
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white mb-4 leading-tight drop-shadow-lg">
+                {couple.bride.name}
+                <span className="block text-rose-200 text-3xl sm:text-4xl md:text-5xl my-2">
+                  &
                 </span>
+                {couple.groom.name}
               </h1>
-              <div className="w-32 h-px bg-gradient-to-r from-transparent via-rose-400 to-transparent mx-auto"></div>
+              <div className="w-32 h-px bg-gradient-to-r from-transparent via-rose-200 to-transparent mx-auto" />
             </motion.div>
 
-            {/* Couple Photos */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 0.8 }}
               transition={{ duration: 1, delay: 0.6 }}
-              className="mb-6 sm:mb-8"
+              className="mb-8"
             >
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 mb-4 sm:mb-6">
-                {/* Bride */}
-                <div className="text-center flex-shrink-0 justify-items-center">
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 bg-gradient-to-br from-rose-200 to-pink-300 rounded-full flex items-center justify-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-3 sm:mb-4 shadow-lg">
-                    👰🏻
-                  </div>
-                  <div className="w-28 sm:w-32 md:w-40 lg:w-48 xl:w-56 mx-auto px-2">
-                    <h3
-                      className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-serif text-gray-800 break-words hyphens-auto leading-tight overflow-wrap-anywhere"
-                      title={couple.bride.fullName}
-                    >
-                      {couple.bride.name}
-                    </h3>
-                  </div>
-                </div>
-
-                {/* Heart - Hidden on mobile, shown on larger screens */}
-                <div className="hidden sm:block text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-rose-500 animate-pulse flex-shrink-0">
-                  💕
-                </div>
-
-                {/* Heart for mobile - shown between bride and groom on mobile */}
-                <div className="sm:hidden text-xl text-rose-500 animate-pulse my-2">
-                  💕
-                </div>
-
-                {/* Groom */}
-                <div className="text-center flex-shrink-0 justify-items-center">
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 bg-gradient-to-br from-blue-200 to-indigo-300 rounded-full flex items-center justify-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-3 sm:mb-4 shadow-lg">
-                    🤵🏻
-                  </div>
-                  <div className="w-28 sm:w-32 md:w-40 lg:w-48 xl:w-56 mx-auto px-2">
-                    <h3
-                      className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-serif text-gray-800 break-words hyphens-auto leading-tight overflow-wrap-anywhere"
-                      title={couple.groom.fullName}
-                    >
-                      {couple.groom.name}
-                    </h3>
-                  </div>
-                </div>
+              <div className="flex items-center justify-center gap-6 sm:gap-10">
+                <Portrait
+                  src={couple.bride.photo}
+                  name={couple.bride.name}
+                  objectPosition={couple.bride.objectPosition}
+                />
+                <div className="text-3xl sm:text-4xl text-rose-200">💕</div>
+                <Portrait
+                  src={couple.groom.photo}
+                  name={couple.groom.name}
+                  objectPosition={couple.groom.objectPosition}
+                />
               </div>
             </motion.div>
 
-            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 30 }}
@@ -107,18 +103,18 @@ export const HeroSection = ({
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
             >
               <motion.button
-                onClick={() => onScrollToSection('rsvp')}
+                onClick={() => onScrollToSection('gallery')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-rose-500 to-pink-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                className="bg-gradient-to-r from-rose-500 to-pink-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base shadow-lg cursor-pointer"
               >
-                {t('navigation.rsvp')}
+                {t('navigation.gallery')}
               </motion.button>
               <motion.button
                 onClick={() => onScrollToSection('details')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white/80 backdrop-blur-sm text-gray-800 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base md:text-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 cursor-pointer"
+                className="bg-white/90 text-gray-800 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base shadow-lg cursor-pointer"
               >
                 {t('hero.view-details')}
               </motion.button>
@@ -126,30 +122,24 @@ export const HeroSection = ({
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="flex justify-center pb-6 sm:pb-8">
+        <div className="flex justify-center pb-8">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: isLoaded ? 1 : 0 }}
             transition={{ duration: 1, delay: 1.5 }}
-            className="z-20"
           >
-            <motion.div
+            <motion.button
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="text-gray-600 text-center cursor-pointer"
+              className="text-white/90 text-center cursor-pointer"
               onClick={() => onScrollToSection('couple')}
             >
-              <div className="text-xs mb-1 sm:mb-2">
-                {t('hero.scroll-down')}
-              </div>
-              <div className="text-lg sm:text-xl">⬇️</div>
-            </motion.div>
+              <div className="text-xs mb-2">{t('hero.scroll-down')}</div>
+              <div className="text-xl">⬇️</div>
+            </motion.button>
           </motion.div>
         </div>
       </div>
-
-      {/* Remove the old absolute positioned scroll indicator */}
     </div>
   );
 };

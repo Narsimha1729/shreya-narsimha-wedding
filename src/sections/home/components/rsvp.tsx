@@ -290,8 +290,7 @@ export const RSVP = () => {
                 </div>
               </div>
               <div className="space-y-2 text-xs sm:text-sm text-gray-600">
-                <p>📧 wedding@fihaa.my.id</p>
-                <p>📱 (555) 123-4567</p>
+                <p>{t('closing-message.contact')}</p>
               </div>
             </div>
 
@@ -310,20 +309,9 @@ export const RSVP = () => {
                   </p>
                 </div>
               </div>
-              <p className="text-gray-600 text-xs sm:text-sm mb-4">
-                {t('rsvp.registry-text')}
+              <p className="text-gray-600 text-xs sm:text-sm">
+                {t('rsvp.presence-present')}
               </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="bg-white/60 px-3 py-1 rounded-full text-xs font-medium text-gray-700">
-                  Gank Now
-                </span>
-                <span className="bg-white/60 px-3 py-1 rounded-full text-xs font-medium text-gray-700">
-                  Fantia
-                </span>
-                <span className="bg-white/60 px-3 py-1 rounded-full text-xs font-medium text-gray-700">
-                  Trakteer
-                </span>
-              </div>
             </div>
           </motion.div>
         </div>

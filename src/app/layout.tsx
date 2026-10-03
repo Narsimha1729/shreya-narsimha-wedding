@@ -11,9 +11,15 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'The Wedding of Fiqri & Beloved',
+  title: 'Shreya & Narsimha',
   description:
-    'Join us in celebrating the union of Fiqri and his beloved. Discover our love story, wedding details, and more.',
+    'A wedding invitation for Shreya and Narsimha, with their photographs and the song Sukh Kalale.',
+  openGraph: {
+    title: 'Shreya & Narsimha',
+    description:
+      'You are invited to the wedding of Shreya and Narsimha.',
+    images: ['/assets/images/gallery/01.jpeg'],
+  },
 };
 
 export default function RootLayout({

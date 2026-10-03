@@ -45,9 +45,14 @@ export const VenueInformation = ({ venue }: VenueInformationProps) => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-3xl p-8 shadow-lg border border-purple-100"
           >
+            <img
+              src={venue.ceremony.photo}
+              alt={venue.ceremony.name}
+              className="w-full h-56 object-cover rounded-2xl mb-8"
+            />
             <div className="text-center mb-8">
               <div className="w-20 h-20 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-white text-3xl">⛪</span>
+                <span className="text-white text-3xl">🪔</span>
               </div>
               <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif text-gray-800 mb-2">
                 {t('venue.ceremony-time')}
@@ -82,14 +87,19 @@ export const VenueInformation = ({ venue }: VenueInformationProps) => {
                 </div>
               </div>
 
-              <button
-                onClick={() =>
-                  window.open(generateMapLink(venue.ceremony.name), '_blank')
-                }
-                className="w-full bg-gradient-to-r from-purple-400 to-indigo-500 text-white py-3 px-6 rounded-xl font-medium hover:from-purple-500 hover:to-indigo-600 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base cursor-pointer"
-              >
-                {t('venue.view-map')}
-              </button>
+              {venue.ceremony.mapQuery ? (
+                <button
+                  onClick={() =>
+                    window.open(
+                      generateMapLink(venue.ceremony.mapQuery),
+                      '_blank'
+                    )
+                  }
+                  className="w-full bg-gradient-to-r from-purple-400 to-indigo-500 text-white py-3 px-6 rounded-xl font-medium hover:from-purple-500 hover:to-indigo-600 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base cursor-pointer"
+                >
+                  {t('venue.view-map')}
+                </button>
+              ) : null}
             </div>
           </motion.div>
 
@@ -100,9 +110,14 @@ export const VenueInformation = ({ venue }: VenueInformationProps) => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-8 shadow-lg border border-amber-100"
           >
+            <img
+              src={venue.reception.photo}
+              alt={venue.reception.name}
+              className="w-full h-56 object-cover rounded-2xl mb-8"
+            />
             <div className="text-center mb-8">
               <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-white text-3xl">🥂</span>
+                <span className="text-white text-3xl">🎵</span>
               </div>
               <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif text-gray-800 mb-2">
                 {t('venue.reception-time')}
@@ -137,14 +152,19 @@ export const VenueInformation = ({ venue }: VenueInformationProps) => {
                 </div>
               </div>
 
-              <button
-                onClick={() =>
-                  window.open(generateMapLink(venue.reception.name), '_blank')
-                }
-                className="w-full bg-gradient-to-r from-amber-400 to-orange-500 text-white py-3 px-6 rounded-xl font-medium hover:from-amber-500 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base cursor-pointer"
-              >
-                {t('venue.view-map')}
-              </button>
+              {venue.reception.mapQuery ? (
+                <button
+                  onClick={() =>
+                    window.open(
+                      generateMapLink(venue.reception.mapQuery),
+                      '_blank'
+                    )
+                  }
+                  className="w-full bg-gradient-to-r from-amber-400 to-orange-500 text-white py-3 px-6 rounded-xl font-medium hover:from-amber-500 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base cursor-pointer"
+                >
+                  {t('venue.view-map')}
+                </button>
+              ) : null}
             </div>
           </motion.div>
         </div>

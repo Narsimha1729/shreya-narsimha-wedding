@@ -93,8 +93,12 @@ export default function HomeView() {
         <WeddingDetailsCard
           date={WEDDING_CONFIG.date}
           venue={WEDDING_CONFIG.venue}
+          dateConfirmed={WEDDING_CONFIG.dateConfirmed}
         />
-        <CountdownTimer targetDate={WEDDING_CONFIG.date} />
+        <CountdownTimer
+          targetDate={WEDDING_CONFIG.date}
+          announced={WEDDING_CONFIG.dateConfirmed}
+        />
       </section>
 
       {/* Venue Information */}

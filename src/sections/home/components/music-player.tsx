@@ -3,6 +3,7 @@
 import { motion } from 'motion/react';
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { WEDDING_CONFIG } from '@/constants';
 
 interface MusicPlayerProps {
   className?: string;
@@ -245,14 +246,10 @@ export default function MusicPlayer({ className = '' }: MusicPlayerProps) {
           ref={audioRef}
           loop
           preload="auto"
-          src="/assets/audio/shirushi-lisa.mp3"
-          aria-label="Wedding background music"
+          src={WEDDING_CONFIG.song.src}
+          aria-label={WEDDING_CONFIG.song.title}
         >
-          <track
-            kind="captions"
-            src="/assets/audio/shirushi-lisa.mp3"
-            label="No captions available"
-          />
+          <track kind="captions" srcLang="en" label={WEDDING_CONFIG.song.title} />
           Your browser does not support the audio element.
         </audio>
 

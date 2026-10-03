@@ -14,37 +14,37 @@ export const EventSchedule = () => {
 
   const scheduleItems = [
     {
-      time: '3:30 PM',
+      time: 'Morning',
       event: t('schedule.guest-arrival'),
       description: t('schedule.welcome-drinks'),
     },
     {
-      time: '4:00 PM',
+      time: 'Muhurtham',
       event: t('schedule.wedding-ceremony'),
       description: t('schedule.vows'),
     },
     {
-      time: '4:30 PM',
+      time: 'Midday',
       event: t('schedule.photography'),
       description: t('schedule.welcome-drink'),
     },
     {
-      time: '6:30 PM',
+      time: 'Evening',
       event: t('schedule.reception-begins'),
       description: t('schedule.dinner-celebration'),
     },
     {
-      time: '7:30 PM',
+      time: 'Song',
       event: t('schedule.first-dance'),
       description: t('schedule.special-moment'),
     },
     {
-      time: '8:00 PM',
+      time: 'Night',
       event: t('schedule.dancing-party'),
       description: t('schedule.celebration-continues'),
     },
     {
-      time: '12:00 AM',
+      time: 'Farewell',
       event: t('schedule.send-off'),
       description: t('schedule.sparkler-farewell'),
     },

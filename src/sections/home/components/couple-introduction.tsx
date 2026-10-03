@@ -4,8 +4,6 @@ import type { WeddingConfigType } from '@/types';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
-import Image from 'next/image';
-
 interface CoupleIntroductionProps {
   bride: WeddingConfigType['bride'];
   groom: WeddingConfigType['groom'];
@@ -55,16 +53,17 @@ export const CoupleIntroduction = ({
             className="text-center lg:text-right"
           >
             <div className="relative inline-block mb-6">
-              <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-gradient-to-br from-rose-100 to-pink-200 rounded-full flex items-center justify-center text-6xl sm:text-7xl md:text-8xl lg:text-9xl shadow-2xl border-8 border-white">
-                <Image
-                  src={bride.photo}
-                  alt={`${bride.fullName}'s photo`}
-                  width={256}
-                  height={256}
-                  className="rounded-full object-cover"
-                  loading="lazy"
-                />
-              </div>
+              <div
+                role="img"
+                aria-label={`${bride.fullName}'s photo`}
+                className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full shadow-2xl border-8 border-white"
+                style={{
+                  backgroundImage: `url(${bride.photo})`,
+                  backgroundSize: '240%',
+                  backgroundPosition: bride.objectPosition,
+                  backgroundRepeat: 'no-repeat',
+                }}
+              />
               <div className="absolute -bottom-4 -right-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-rose-400 rounded-full flex items-center justify-center shadow-lg">
                 <span className="text-white text-xl sm:text-2xl">👸</span>
               </div>
@@ -124,15 +123,17 @@ export const CoupleIntroduction = ({
             className="text-center lg:text-left"
           >
             <div className="relative inline-block mb-6">
-              <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-gradient-to-br from-blue-100 to-indigo-200 rounded-full flex items-center justify-center text-6xl sm:text-7xl md:text-8xl lg:text-9xl shadow-2xl border-8 border-white">
-                <Image
-                  src={groom.photo}
-                  alt={`${groom.fullName}'s photo`}
-                  width={256}
-                  height={256}
-                  className="rounded-full object-cover"
-                />
-              </div>
+              <div
+                role="img"
+                aria-label={`${groom.fullName}'s photo`}
+                className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full shadow-2xl border-8 border-white"
+                style={{
+                  backgroundImage: `url(${groom.photo})`,
+                  backgroundSize: '240%',
+                  backgroundPosition: groom.objectPosition,
+                  backgroundRepeat: 'no-repeat',
+                }}
+              />
               <div className="absolute -bottom-4 -left-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-blue-400 rounded-full flex items-center justify-center shadow-lg">
                 <span className="text-white text-xl sm:text-2xl">🤴</span>
               </div>
@@ -168,7 +169,9 @@ export const CoupleIntroduction = ({
             <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif text-gray-700 italic mb-4">
               {t('couple.love-quote')}
             </p>
-            <p className="text-gray-500 text-xs sm:text-sm">— Clannad</p>
+            <p className="text-gray-500 text-xs sm:text-sm">
+              — {t('couple.quote-by')}
+            </p>
           </div>
         </motion.div>
       </div>

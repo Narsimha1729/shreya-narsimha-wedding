@@ -69,7 +69,7 @@ export const ClosingMessage = ({ bride, groom }: ClosingMessageProps) => {
           </div>
 
           <p className="text-sm sm:text-base text-gray-600">
-            #FiqriAndMio2025 #LoveWins #ForeverStartsNow
+            {t('closing-message.hashtags')}
           </p>
         </motion.div>
 
@@ -81,7 +81,7 @@ export const ClosingMessage = ({ bride, groom }: ClosingMessageProps) => {
           className="mt-16 pt-8 border-t border-white/40"
         >
           <p className="text-xs sm:text-sm text-gray-500">
-            Questions? Contact us at wedding@fihaa.my.id
+            {t('closing-message.contact')}
           </p>
         </motion.div>
       </div>

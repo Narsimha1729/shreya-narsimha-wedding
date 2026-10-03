@@ -61,7 +61,7 @@ export const GalleryPreview = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-2">
+        <div className="max-w-xl mx-auto grid grid-cols-4 sm:grid-cols-7 gap-1.5">
           {images.map((image, index) => (
             <motion.button
               key={image.src}
@@ -70,17 +70,14 @@ export const GalleryPreview = () => {
               animate={{ opacity: inView ? 1 : 0, scale: inView ? 1 : 0.92 }}
               transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.4) }}
               onClick={() => setActive(index)}
-              className="group relative aspect-square bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer text-left"
+              aria-label={image.caption}
+              className="group relative aspect-square bg-white rounded-md shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition-all duration-300 cursor-pointer"
             >
               <img
                 src={image.src}
                 alt={image.caption}
                 className="absolute inset-0 w-full h-full object-cover object-[center_22%] group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80" />
-              <p className="absolute bottom-0 left-0 right-0 p-1.5 sm:p-2 text-white text-[10px] sm:text-xs font-medium leading-tight line-clamp-2">
-                {image.caption}
-              </p>
             </motion.button>
           ))}
         </div>

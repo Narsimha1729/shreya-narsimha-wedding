@@ -18,29 +18,46 @@ export const RSVP = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [error, setError] = useState('');
 
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    setIsSubmitted(true);
+    setError('');
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        attendance: '',
-        guests: '1',
-        dietaryRestrictions: '',
-        message: '',
+    const url = process.env.NEXT_PUBLIC_RSVP_URL;
+
+    if (!url) {
+      setError(
+        'Replies are not connected to the family sheet yet. Please try again shortly.'
+      );
+
+      return;
+    }
+
+    setIsSending(true);
+
+    try {
+      await fetch(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          ...formData,
+          submittedAt: new Date().toISOString(),
+        }),
       });
-    }, 3000);
+      setIsSubmitted(true);
+    } catch {
+      setError('We could not save your reply. Please try again.');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const handleChange = (
@@ -237,11 +254,16 @@ export const RSVP = () => {
                 </div>
 
                 {/* Submit Button */}
+                {error ? (
+                  <p className="text-sm text-rose-600 text-center">{error}</p>
+                ) : null}
+
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-rose-400 to-pink-500 text-white py-4 px-6 rounded-xl font-medium text-base sm:text-lg hover:from-rose-500 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  disabled={isSending}
+                  className="w-full bg-gradient-to-r from-rose-400 to-pink-500 text-white py-4 px-6 rounded-xl font-medium text-base sm:text-lg hover:from-rose-500 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-60"
                 >
-                  {t('rsvp.send-rsvp')}
+                  {isSending ? 'Sending...' : t('rsvp.send-rsvp')}
                 </button>
               </form>
             </div>

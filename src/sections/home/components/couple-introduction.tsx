@@ -4,6 +4,7 @@ import type { WeddingConfigType } from '@/types';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
+
 interface CoupleIntroductionProps {
   bride: WeddingConfigType['bride'];
   groom: WeddingConfigType['groom'];

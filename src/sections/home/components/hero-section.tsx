@@ -45,7 +45,7 @@ export const HeroSection = ({
   const { t } = useTranslation('home');
 
   return (
-    <div className="h-screen relative overflow-hidden">
+    <div className="h-full relative overflow-hidden">
       <img
         src={couple.cover}
         alt="Shreya and Narsimha"

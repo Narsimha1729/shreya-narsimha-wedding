@@ -79,7 +79,7 @@ export const CountdownTimer = ({
   return (
     <div
       ref={ref}
-      className="py-16 px-4 bg-gradient-to-br from-gray-50 to-rose-50/30"
+      className="py-2 px-4 bg-gradient-to-br from-gray-50 to-rose-50/30"
     >
       <div className="max-w-4xl mx-auto text-center">
         {/* Header */}
@@ -87,15 +87,14 @@ export const CountdownTimer = ({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 30 }}
           transition={{ duration: 0.8 }}
-          className="mb-12"
+          className="mb-1"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif text-gray-800 mb-4">
+          <h2 className="text-lg sm:text-3xl font-serif text-gray-800 mb-0.5">
             {announced
               ? t('details.countdown-title')
               : t('details.countdown-waiting-title')}
           </h2>
-          <div className="w-24 h-px bg-rose-400 mx-auto mb-4"></div>
-          <p className="text-gray-600 text-base sm:text-lg md:text-xl">
+          <p className="hidden">
             {announced
               ? t('details.countdown-subtitle')
               : t('details.countdown-waiting-subtitle')}
@@ -116,7 +115,7 @@ export const CountdownTimer = ({
         )}
 
         {announced && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-4 gap-2">
           {timeUnits.map((unit, index) => (
             <motion.div
               key={unit.label}
@@ -134,7 +133,7 @@ export const CountdownTimer = ({
               }}
               className="relative group"
             >
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-2">
+              <div className="bg-white rounded-2xl p-2 sm:p-3 shadow-lg border border-gray-100">
                 {/* Background Gradient */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${unit.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl`}
@@ -167,7 +166,7 @@ export const CountdownTimer = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 20 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-12"
+          className="hidden"
         >
           <div className="inline-block bg-white/60 backdrop-blur-sm rounded-full px-6 py-3 shadow-md border border-white/40">
             <p className="text-gray-700 font-medium text-sm sm:text-base md:text-lg">

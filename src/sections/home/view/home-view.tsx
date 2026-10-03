@@ -1,6 +1,13 @@
 'use client';
 
-import { useState, useEffect, useRef, type RefObject } from 'react';
+import {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  type ReactNode,
+  type RefObject,
+} from 'react';
 import { useScrollSpy } from '@/hooks/use-scroll-spy';
 import { LetterAnimation } from '@/components';
 import {
@@ -12,7 +19,6 @@ import {
   EventSchedule,
   RSVP,
   GalleryPreview,
-  ClosingMessage,
   FloatingNavigation,
   NavigationFAB,
   MusicPlayer,
@@ -111,8 +117,10 @@ const Invitation = ({
         onScrollToSection={onScrollToSection}
       />
 
-      {/* Hero Section */}
-      <section id="hero" className="relative">
+      <section
+        id="hero"
+        className="h-dvh snap-start snap-always overflow-hidden"
+      >
         <HeroSection
           isLoaded={isLoaded}
           couple={WEDDING_CONFIG}
@@ -120,17 +128,15 @@ const Invitation = ({
         />
       </section>
 
-      {/* Couple Introduction */}
-      <section id="couple" className="relative">
+      <Screen id="couple">
         <CoupleIntroduction
           bride={WEDDING_CONFIG.bride}
           groom={WEDDING_CONFIG.groom}
           isVisible={isLoaded}
         />
-      </section>
+      </Screen>
 
-      {/* Wedding Details */}
-      <section id="details" className="relative">
+      <Screen id="details">
         <WeddingDetailsCard
           date={WEDDING_CONFIG.date}
           weddingDate={WEDDING_CONFIG.weddingDate}
@@ -141,31 +147,20 @@ const Invitation = ({
           targetDate={WEDDING_CONFIG.date}
           announced={WEDDING_CONFIG.dateConfirmed}
         />
-      </section>
+      </Screen>
 
-      {/* Venue Information */}
-      <section id="venue" className="relative">
+      <Screen id="venue">
         <VenueInformation venue={WEDDING_CONFIG.venue} />
         <EventSchedule />
-      </section>
+      </Screen>
 
-      {/* Gallery Preview */}
-      <section id="gallery" className="relative">
+      <Screen id="gallery">
         <GalleryPreview />
-      </section>
+      </Screen>
 
-      {/* RSVP Section */}
-      <section id="rsvp" className="relative">
+      <Screen id="rsvp">
         <RSVP />
-      </section>
-
-      {/* Closing Message */}
-      <section id="closing" className="relative">
-        <ClosingMessage
-          bride={WEDDING_CONFIG.bride.fullName}
-          groom={WEDDING_CONFIG.groom.fullName}
-        />
-      </section>
+      </Screen>
 
       {/* Music Player */}
       <MusicPlayer audioRef={audioRef} />
@@ -180,4 +175,54 @@ const Invitation = ({
       <ScrollProgressIndicator activeSection={activeSection} />
     </div>
   );
-}
+};
+
+const Screen = ({ id, children }: { id: string; children: ReactNode }) => {
+  const frame = useRef<HTMLDivElement>(null);
+  const content = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const fit = () => {
+      const frameEl = frame.current;
+      const contentEl = content.current;
+
+      if (!frameEl || !contentEl) return;
+
+      contentEl.style.transform = 'none';
+      const available = frameEl.clientHeight;
+      const needed = contentEl.offsetHeight;
+      const next = needed > available && needed > 0 ? available / needed : 1;
+
+      contentEl.style.transform = `scale(${next})`;
+    };
+
+    fit();
+
+    const observer = new ResizeObserver(fit);
+
+    if (frame.current) observer.observe(frame.current);
+    if (content.current) observer.observe(content.current);
+    window.addEventListener('resize', fit);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', fit);
+    };
+  }, []);
+
+  return (
+    <section
+      id={id}
+      className="h-dvh snap-start snap-always overflow-hidden pt-14 sm:pt-16"
+    >
+      <div
+        ref={frame}
+        className="h-full overflow-hidden flex items-center justify-center"
+      >
+        <div ref={content} className="one-screen w-full origin-center">
+          {children}
+        </div>
+      </div>
+    </section>
+  );
+};

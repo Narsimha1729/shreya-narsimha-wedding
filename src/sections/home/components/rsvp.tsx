@@ -100,7 +100,7 @@ export const RSVP = () => {
   return (
     <div
       ref={ref}
-      className="py-20 px-4 bg-gradient-to-br from-rose-50 to-pink-100"
+      className="py-4 px-4 bg-gradient-to-br from-rose-50 to-pink-100"
     >
       <div className="max-w-4xl mx-auto">
         {/* Header */}
@@ -108,7 +108,7 @@ export const RSVP = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 30 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-3"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-gray-800 mb-4">
             {t('rsvp.title')}
@@ -119,7 +119,7 @@ export const RSVP = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {/* RSVP Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -131,7 +131,7 @@ export const RSVP = () => {
                 {t('rsvp.confirm-attendance')}
               </h3>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-2">
                 {/* Name */}
                 <div>
                   <label
@@ -247,7 +247,7 @@ export const RSVP = () => {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    rows={4}
+                    rows={2}
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-rose-400 focus:border-transparent outline-none transition-all duration-300 resize-none"
                     placeholder={t('rsvp.message-placeholder')}
                   />
@@ -274,7 +274,7 @@ export const RSVP = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : 50 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-y-8"
+            className="hidden md:block space-y-3"
           >
             {/* RSVP Deadline */}
             <div className="bg-white rounded-2xl p-6 shadow-lg border border-rose-100">

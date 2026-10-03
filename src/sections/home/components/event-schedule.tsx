@@ -42,15 +42,15 @@ export const EventSchedule = () => {
   ];
 
   return (
-    <div ref={ref} className="py-10 px-4 bg-gradient-to-b from-white to-gray-50">
+    <div ref={ref} className="py-2 px-4 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 20 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-6"
+          className="text-center mb-2"
         >
-          <h3 className="text-2xl sm:text-3xl font-serif text-gray-800 mb-3">
+          <h3 className="text-base sm:text-2xl font-serif text-gray-800 mb-1">
             {t('schedule.title')}
           </h3>
           <div className="w-16 h-px bg-rose-400 mx-auto"></div>
@@ -68,9 +68,9 @@ export const EventSchedule = () => {
               <img
                 src={item.photo}
                 alt={item.event}
-                className="w-full h-28 sm:h-36 object-cover object-[center_22%]"
+                className="w-full h-14 sm:h-28 object-cover object-[center_22%]"
               />
-              <div className="p-3">
+              <div className="p-1.5 sm:p-3">
                 <span className="inline-block bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-medium mb-1.5">
                   {item.time}
                 </span>

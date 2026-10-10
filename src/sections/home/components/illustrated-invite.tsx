@@ -115,6 +115,11 @@ export function IllustratedInvite() {
       when: t('invite.late-afternoon'),
       image: WEDDING_CONFIG.art.haldi,
       petal: 'linear-gradient(135deg, #f6d36a, #e08a2f)',
+      paintedTitle: true,
+      copyTop: '29%',
+      mask: '74%',
+      maskEnd: '84%',
+      flame: { left: '11%', top: '78%' },
       shades: haldiShades,
       dress: '',
       lines: [] as string[],
@@ -125,6 +130,11 @@ export function IllustratedInvite() {
       when: t('invite.evening'),
       image: WEDDING_CONFIG.art.sangeet,
       petal: 'linear-gradient(135deg, #f7c3d2, #c45c7a)',
+      paintedTitle: false,
+      copyTop: '21%',
+      mask: '60%',
+      maskEnd: '72%',
+      flame: null,
       shades: [],
       dress: t('invite.sangeet-dress'),
       lines: [] as string[],
@@ -135,6 +145,11 @@ export function IllustratedInvite() {
       when: t('invite.morning'),
       image: WEDDING_CONFIG.art.vidhi,
       petal: 'linear-gradient(135deg, #f3b0c4, #c44766)',
+      paintedTitle: false,
+      copyTop: '18%',
+      mask: '66%',
+      maskEnd: '78%',
+      flame: null,
       shades: [],
       dress: t('invite.vidhi-dress'),
       lines: [] as string[],
@@ -145,6 +160,11 @@ export function IllustratedInvite() {
       when: t('invite.afternoon'),
       image: WEDDING_CONFIG.art.mangal,
       petal: 'linear-gradient(135deg, #f6d98a, #c69214)',
+      paintedTitle: false,
+      copyTop: '8%',
+      mask: '64%',
+      maskEnd: '76%',
+      flame: { left: '84%', top: '84%' },
       shades: [],
       dress: '',
       lines: [
@@ -447,81 +467,97 @@ export function IllustratedInvite() {
             {events.map((item) => (
               <article
                 key={item.title}
-                className="overflow-hidden rounded-3xl border border-[#eadcc4] bg-white/80 shadow-sm"
+                className="relative overflow-hidden rounded-3xl shadow-sm"
               >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="block h-auto w-full"
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="block h-auto w-full"
+                />
+                <img
+                  src={item.image}
+                  alt=""
+                  aria-hidden
+                  className="scene-people pointer-events-none absolute inset-0 h-full w-full"
+                  style={{
+                    maskImage: `linear-gradient(to bottom, transparent ${item.mask}, #000 ${item.maskEnd})`,
+                    WebkitMaskImage: `linear-gradient(to bottom, transparent ${item.mask}, #000 ${item.maskEnd})`,
+                  }}
+                />
+                {EVENT_PETALS.map((petal) => (
+                  <span
+                    key={petal.left}
+                    className="event-petal"
+                    style={{
+                      left: petal.left,
+                      width: petal.size,
+                      height: petal.size * 1.45,
+                      animationDuration: petal.duration,
+                      animationDelay: petal.delay,
+                      background: item.petal,
+                      ['--sway' as string]: petal.sway,
+                    }}
                   />
-                  {EVENT_PETALS.map((petal) => (
-                    <span
-                      key={petal.left}
-                      className="event-petal"
-                      style={{
-                        left: petal.left,
-                        width: petal.size,
-                        height: petal.size * 1.45,
-                        animationDuration: petal.duration,
-                        animationDelay: petal.delay,
-                        background: item.petal,
-                        ['--sway' as string]: petal.sway,
-                      }}
-                    />
-                  ))}
-                </div>
-                <div className="px-5 py-5 text-center">
-                  <h3 className="font-script text-5xl text-[#6b2d3c]">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 font-serif text-lg text-[#4d3b32]">
+                ))}
+                {item.flame ? (
+                  <span
+                    className="scene-flame"
+                    style={{ left: item.flame.left, top: item.flame.top }}
+                  />
+                ) : null}
+                <div
+                  className="pointer-events-none absolute inset-x-[12%] z-10 text-center"
+                  style={{ top: item.copyTop }}
+                >
+                  {item.paintedTitle ? null : (
+                    <h3 className="font-script text-[2.7rem] leading-none text-[#6b2d3c]">
+                      {item.title}
+                    </h3>
+                  )}
+                  <p
+                    className={`font-serif text-base text-[#4d3b32] ${item.paintedTitle ? '' : 'mt-1'}`}
+                  >
                     {item.date}
                   </p>
-                  <p className="mt-1 text-sm uppercase tracking-[0.18em] text-[#a68456]">
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[#a68456]">
                     {item.when}
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed text-[#5c463c]">
+                  <p className="mt-1 text-sm text-[#5c463c]">
                     {WEDDING_CONFIG.venue.ceremony.name}
                   </p>
-                  <div className="mt-5">
-                    <p className="text-[11px] uppercase tracking-[0.22em] text-[#a68456]">
-                      {t('invite.dress')}
-                    </p>
-                    {item.shades.length > 0 ? (
-                      <div className="mt-3 grid grid-cols-5 gap-2">
-                        {item.shades.map((shade) => (
-                          <div key={shade.name}>
-                            <div
-                              className="h-12 rounded-xl border border-[#eadcc4]"
-                              style={{ backgroundColor: shade.color }}
-                            />
-                            <p className="mt-1 text-center text-[10px] leading-tight text-[#5c463c]">
-                              {shade.name}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    ) : item.lines.length > 0 ? (
-                      <div className="mt-2 space-y-0.5">
-                        <p className="font-serif text-sm text-[#6b2d3c]">
-                          {item.lines[0]}
-                        </p>
-                        {item.lines.slice(1).map((line) => (
-                          <p
-                            key={line}
-                            className="font-serif text-sm leading-snug text-[#4d3b32]"
-                          >
-                            {line}
+                  <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-[#a68456]">
+                    {t('invite.dress')}
+                  </p>
+                  {item.shades.length > 0 ? (
+                    <div className="mx-auto mt-1.5 grid max-w-[15rem] grid-cols-5 gap-1.5">
+                      {item.shades.map((shade) => (
+                        <div key={shade.name}>
+                          <div
+                            className="h-6 rounded-full border border-white/80 shadow-sm"
+                            style={{ backgroundColor: shade.color }}
+                          />
+                          <p className="mt-1 text-center text-[8px] leading-tight text-[#5c463c]">
+                            {shade.name}
                           </p>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="mt-2 text-center font-serif text-sm leading-relaxed text-[#4d3b32]">
-                        {item.dress}
-                      </p>
-                    )}
-                  </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : item.lines.length > 0 ? (
+                    <div className="mt-0.5 space-y-0">
+                      {item.lines.map((line) => (
+                        <p
+                          key={line}
+                          className="font-serif text-xs leading-tight text-[#4d3b32]"
+                        >
+                          {line}
+                        </p>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="mt-0.5 font-serif text-sm leading-snug text-[#4d3b32]">
+                      {item.dress}
+                    </p>
+                  )}
                 </div>
               </article>
             ))}

@@ -487,26 +487,33 @@ export function IllustratedInvite() {
             ))}
           </div>
           <div className="mt-8 space-y-8">
-            <div className="rounded-3xl border border-[#eadcc4] bg-white/70 px-5 py-6 text-center">
-              <h3 className="font-serif text-2xl text-[#6b2d3c]">
-                {t('invite.venue-title')}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-[#5c463c]">
-                {t('invite.venue-text')}
-              </p>
-              <p className="mt-2 text-sm text-[#5c463c]">
-                {WEDDING_CONFIG.venue.ceremony.name}
-                <br />
-                {WEDDING_CONFIG.venue.ceremony.address}
-              </p>
-              <a
-                href={ceremonyMap}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 inline-block text-sm tracking-wide text-[#8a4a3a] underline decoration-[#e2c48a] underline-offset-4"
-              >
-                {t('invite.route')}
-              </a>
+            <div className="overflow-hidden rounded-3xl border border-[#eadcc4] bg-white/70 text-center">
+              <img
+                src={WEDDING_CONFIG.venue.ceremony.photo}
+                alt={WEDDING_CONFIG.venue.ceremony.name}
+                className="h-64 w-full object-cover object-[center_30%]"
+              />
+              <div className="px-5 py-6">
+                <h3 className="font-serif text-2xl text-[#6b2d3c]">
+                  {t('invite.venue-title')}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#5c463c]">
+                  {t('invite.venue-text')}
+                </p>
+                <p className="mt-2 text-sm text-[#5c463c]">
+                  {WEDDING_CONFIG.venue.ceremony.name}
+                  <br />
+                  {WEDDING_CONFIG.venue.ceremony.address}
+                </p>
+                <a
+                  href={ceremonyMap}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-block text-sm tracking-wide text-[#8a4a3a] underline decoration-[#e2c48a] underline-offset-4"
+                >
+                  {t('invite.route')}
+                </a>
+              </div>
             </div>
             <div className="rounded-3xl border border-[#eadcc4] bg-white/70 px-5 py-6 text-center">
               <h3 className="font-serif text-2xl text-[#6b2d3c]">

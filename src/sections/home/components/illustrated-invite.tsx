@@ -260,7 +260,7 @@ export function IllustratedInvite({
           />
           <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-transparent to-[#f7f0e6]" />
           <div className="relative">
-        <section className="px-8 pt-28 pb-10 text-center">
+        <section className="px-8 pt-28 pb-14 text-center">
           <p className="font-serif text-base tracking-wide text-[#3d2b22]">
             {t('invite.invocation')}
           </p>
@@ -272,20 +272,14 @@ export function IllustratedInvite({
           <p className="mt-6 font-serif text-2xl italic leading-snug text-[#3d2b22]">
             {t('invite.invite-lead')}
           </p>
-          <p className="mt-3 font-serif text-2xl leading-snug text-[#3d2b22]">
+          <p className="mt-2 font-serif text-2xl leading-snug text-[#3d2b22]">
             {t('invite.families')}
           </p>
-          <span className="mx-auto mt-5 block h-px w-10 bg-[#3d2b22]" />
-          <p className="mt-5 font-serif text-5xl tracking-[0.22em] text-[#1c140f] uppercase">
-            {t('invite.invite-word')}
+          <p className="mt-4 font-serif text-xl leading-snug text-[#3d2b22]">
+            {t('invite.invite-you')}
           </p>
-        </section>
-
-        <section className="px-6 pt-2 pb-14">
-          <p className="text-center text-[11px] uppercase tracking-[0.28em] text-[#a68456]">
-            {t('invite.letter-kicker')}
-          </p>
-          <div className="mt-5 rounded-3xl border border-[#eadcc4] bg-white/75 px-6 py-8 shadow-sm">
+          <p className="font-script mt-2 text-5xl text-[#6b2d3c]">{couple}</p>
+          <div className="mt-8 rounded-3xl border border-[#eadcc4] bg-white/75 px-6 py-8 text-left shadow-sm">
             <p className="font-serif text-2xl italic text-[#6b2d3c]">
               {t('invite.letter-dear')}
             </p>
@@ -300,10 +294,7 @@ export function IllustratedInvite({
         </section>
 
         <section className="px-6 pb-14">
-          <p className="text-center text-[11px] uppercase tracking-[0.28em] text-[#a68456]">
-            {t('invite.events-kicker')}
-          </p>
-          <h2 className="mt-2 text-center font-serif text-4xl text-[#3d2b22]">
+          <h2 className="text-center font-serif text-3xl text-[#3d2b22]">
             {t('invite.events-title')}
           </h2>
           <div className="mt-8 space-y-8">

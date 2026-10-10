@@ -699,7 +699,7 @@ export function IllustratedInvite() {
                 <img
                   src={photo.src}
                   alt={photo.caption}
-                  className="h-80 w-full rounded-2xl object-cover object-[center_22%]"
+                  className="h-[28rem] w-full rounded-2xl bg-[#f7f0e6] object-contain"
                 />
                 <figcaption className="mt-2 text-center font-serif text-sm text-[#5c463c]">
                   {photo.caption}

@@ -53,60 +53,28 @@ export const WEDDING_CONFIG = {
   },
   gallery: [
     {
-      src: asset('/assets/images/gallery/01.jpeg'),
-      caption: 'The smile that started forever',
+      src: asset('/assets/images/gallery/couple-01.jpg'),
+      caption: 'A step taken together',
     },
     {
-      src: asset('/assets/images/gallery/02.jpeg'),
-      caption: 'Walking into the day together',
+      src: asset('/assets/images/gallery/couple-02.jpg'),
+      caption: 'Under a rain of flowers',
     },
     {
-      src: asset('/assets/images/gallery/03.jpeg'),
-      caption: 'Hands that found their home',
+      src: asset('/assets/images/gallery/couple-03.jpg'),
+      caption: 'A look meant only for us',
     },
     {
-      src: asset('/assets/images/gallery/04.jpeg'),
-      caption: 'A look that says everything',
+      src: asset('/assets/images/gallery/couple-04.jpg'),
+      caption: 'Seated, still smiling',
     },
     {
-      src: asset('/assets/images/gallery/05.jpeg'),
-      caption: 'Joy, side by side',
+      src: asset('/assets/images/gallery/couple-05.jpg'),
+      caption: 'A greeting, and a smile',
     },
     {
-      src: asset('/assets/images/gallery/06.jpeg'),
-      caption: 'Quiet laughter between us',
-    },
-    {
-      src: asset('/assets/images/gallery/07.jpeg'),
-      caption: 'Wrapped in the same moment',
-    },
-    {
-      src: asset('/assets/images/gallery/08.jpeg'),
-      caption: 'Gold, silk, and a shared smile',
-    },
-    {
-      src: asset('/assets/images/gallery/09.jpeg'),
-      caption: 'The kind of happy you keep',
-    },
-    {
-      src: asset('/assets/images/gallery/10.jpeg'),
-      caption: 'Steps we take together',
-    },
-    {
-      src: asset('/assets/images/gallery/11.jpeg'),
-      caption: 'A promise in the open air',
-    },
-    {
-      src: asset('/assets/images/gallery/12.jpeg'),
-      caption: 'Closer than the photograph',
-    },
-    {
-      src: asset('/assets/images/gallery/13.jpeg'),
-      caption: 'Two hearts, one frame',
-    },
-    {
-      src: asset('/assets/images/gallery/14.jpeg'),
-      caption: 'Still choosing each other',
+      src: asset('/assets/images/gallery/couple-06.jpg'),
+      caption: 'A promise on one knee',
     },
   ],
 };

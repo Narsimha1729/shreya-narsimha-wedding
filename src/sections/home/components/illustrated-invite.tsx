@@ -72,28 +72,24 @@ export function IllustratedInvite({
       date: t('invite.date-18'),
       when: t('invite.evening'),
       image: WEDDING_CONFIG.art.haldi,
-      map: ceremonyMap,
     },
     {
       title: t('invite.sangeet'),
       date: t('invite.date-18'),
       when: t('invite.evening'),
       image: WEDDING_CONFIG.art.sangeet,
-      map: ceremonyMap,
     },
     {
       title: t('invite.vidhi'),
       date: t('invite.date-19'),
       when: t('invite.morning'),
       image: WEDDING_CONFIG.art.vidhi,
-      map: ceremonyMap,
     },
     {
       title: t('invite.mangal'),
       date: t('invite.date-19'),
-      when: t('invite.morning'),
+      when: t('invite.afternoon'),
       image: WEDDING_CONFIG.art.mangal,
-      map: ceremonyMap,
     },
   ];
 
@@ -258,7 +254,7 @@ export function IllustratedInvite({
           </div>
         </section>
 
-        <div className="relative z-10 -mt-[22vh]">
+        <div className="relative z-10 -mt-[22vh] overflow-hidden">
           <img
             src={WEDDING_CONFIG.art.paper}
             alt=""
@@ -315,8 +311,6 @@ export function IllustratedInvite({
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-[#5c463c]">
                     {WEDDING_CONFIG.venue.ceremony.name}
-                    <br />
-                    {WEDDING_CONFIG.venue.ceremony.address}
                   </p>
                   <div className="mt-5 text-left">
                     <p className="text-[11px] uppercase tracking-[0.22em] text-[#a68456]">
@@ -324,38 +318,53 @@ export function IllustratedInvite({
                     </p>
                     <div className="mt-2 h-12 rounded-xl border border-dashed border-[#c6a56a] bg-transparent" />
                   </div>
-                  <a
-                    href={item.map}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-block text-sm tracking-wide text-[#8a4a3a] underline decoration-[#e2c48a] underline-offset-4"
-                  >
-                    {t('invite.route')}
-                  </a>
                 </div>
               </article>
             ))}
           </div>
-          <div className="mt-8 rounded-3xl border border-[#eadcc4] bg-white/70 px-5 py-6 text-center">
-            <h3 className="font-serif text-2xl text-[#6b2d3c]">
-              {t('invite.stay-title')}
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-[#5c463c]">
-              {t('invite.stay-text')}
-            </p>
-            <p className="mt-2 text-sm text-[#5c463c]">
-              {WEDDING_CONFIG.venue.reception.name}
-              <br />
-              {WEDDING_CONFIG.venue.reception.address}
-            </p>
-            <a
-              href={stayMap}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-block text-sm tracking-wide text-[#8a4a3a] underline decoration-[#e2c48a] underline-offset-4"
-            >
-              {t('invite.route')}
-            </a>
+          <div className="mt-8 space-y-8">
+            <div className="rounded-3xl border border-[#eadcc4] bg-white/70 px-5 py-6 text-center">
+              <h3 className="font-serif text-2xl text-[#6b2d3c]">
+                {t('invite.venue-title')}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#5c463c]">
+                {t('invite.venue-text')}
+              </p>
+              <p className="mt-2 text-sm text-[#5c463c]">
+                {WEDDING_CONFIG.venue.ceremony.name}
+                <br />
+                {WEDDING_CONFIG.venue.ceremony.address}
+              </p>
+              <a
+                href={ceremonyMap}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-block text-sm tracking-wide text-[#8a4a3a] underline decoration-[#e2c48a] underline-offset-4"
+              >
+                {t('invite.route')}
+              </a>
+            </div>
+            <div className="rounded-3xl border border-[#eadcc4] bg-white/70 px-5 py-6 text-center">
+              <h3 className="font-serif text-2xl text-[#6b2d3c]">
+                {t('invite.stay-title')}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#5c463c]">
+                {t('invite.stay-text')}
+              </p>
+              <p className="mt-2 text-sm text-[#5c463c]">
+                {WEDDING_CONFIG.venue.reception.name}
+                <br />
+                {WEDDING_CONFIG.venue.reception.address}
+              </p>
+              <a
+                href={stayMap}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-block text-sm tracking-wide text-[#8a4a3a] underline decoration-[#e2c48a] underline-offset-4"
+              >
+                {t('invite.route')}
+              </a>
+            </div>
           </div>
         </section>
 
@@ -533,7 +542,7 @@ export function IllustratedInvite({
           </div>
         </section>
 
-        <section className="px-6 pb-24">
+        <section className="px-6 pb-8">
           <p className="text-center text-[11px] uppercase tracking-[0.28em] text-[#a68456]">
             {t('invite.film-kicker')}
           </p>

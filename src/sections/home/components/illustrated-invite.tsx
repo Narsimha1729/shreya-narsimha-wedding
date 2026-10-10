@@ -399,8 +399,18 @@ export function IllustratedInvite() {
           <p className="mt-6 font-serif text-lg italic leading-snug text-[#3d2b22]">
             {t('invite.invite-you')}
           </p>
-          <p className="font-script mt-2 text-5xl leading-tight text-[#6b2d3c]">
-            {t('invite.couple-names')}
+          <p className="mt-5 font-serif text-base tracking-wide text-[#8a4a3a]">
+            {t('invite.bride-title')}
+          </p>
+          <p className="font-script mt-1 text-5xl leading-none text-[#6b2d3c]">
+            {t('invite.bride-name')}
+          </p>
+          <p className="mt-2 font-serif text-lg italic text-[#8a4a3a]">&</p>
+          <p className="mt-1 font-serif text-base tracking-wide text-[#8a4a3a]">
+            {t('invite.groom-title')}
+          </p>
+          <p className="font-script mt-1 text-5xl leading-none text-[#6b2d3c]">
+            {t('invite.groom-name')}
           </p>
           <div className="mt-8 rounded-3xl border border-[#eadcc4] bg-white/75 px-6 py-8 text-left shadow-sm">
             <p className="font-serif text-2xl italic text-[#6b2d3c]">

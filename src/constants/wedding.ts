@@ -10,8 +10,8 @@ export const WEDDING_CONFIG = {
     title: 'Sukh Kalale',
     src: asset('/assets/audio/sukh-kalale.mp3'),
   },
-  /** Couple film. Leave empty until the YouTube link is ready. */
-  film: '',
+  /** Couple film. */
+  film: 'https://youtu.be/XdtlVIR7Csk',
   art: {
     cover: asset('/assets/theme/cover-sky.jpg'),
     paper: asset('/assets/theme/paper.jpg'),

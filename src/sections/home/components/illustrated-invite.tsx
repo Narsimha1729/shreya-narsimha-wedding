@@ -357,21 +357,21 @@ export function IllustratedInvite({
                         ))}
                       </div>
                     ) : item.lines.length > 0 ? (
-                      <div className="mt-3 space-y-1">
-                        <p className="font-serif text-lg text-[#6b2d3c]">
+                      <div className="mt-2 space-y-0.5">
+                        <p className="font-serif text-sm text-[#6b2d3c]">
                           {item.lines[0]}
                         </p>
                         {item.lines.slice(1).map((line) => (
                           <p
                             key={line}
-                            className="font-serif text-base leading-snug text-[#4d3b32]"
+                            className="font-serif text-sm leading-snug text-[#4d3b32]"
                           >
                             {line}
                           </p>
                         ))}
                       </div>
                     ) : (
-                      <p className="mt-2 text-center font-serif text-lg leading-relaxed text-[#4d3b32]">
+                      <p className="mt-2 text-center font-serif text-sm leading-relaxed text-[#4d3b32]">
                         {item.dress}
                       </p>
                     )}

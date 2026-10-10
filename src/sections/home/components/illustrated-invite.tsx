@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, type FormEvent, type RefObject } from 'react';
+import { useEffect, useRef, useState, type FormEvent, type RefObject } from 'react';
 import { useTranslation } from 'react-i18next';
 import { WEDDING_CONFIG } from '@/constants';
 import { generateMapLink } from '@/lib/wedding-utils';
@@ -48,6 +48,7 @@ export function IllustratedInvite({
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
+  const [shift, setShift] = useState(0);
 
   const [form, setForm] = useState({
     name: '',
@@ -95,6 +96,28 @@ export function IllustratedInvite({
       map: ceremonyMap,
     },
   ];
+
+  useEffect(() => {
+    let frame = 0;
+
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        setShift(window.scrollY);
+      });
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
+  const sceneShift = Math.min(shift, 900) * 0.34;
+  const paperShift = Math.min(shift * 0.14, 110);
 
   const beginMusic = () => {
     const audio = audioRef.current;
@@ -177,25 +200,32 @@ export function IllustratedInvite({
       }}
     >
       <div className="mx-auto min-h-dvh w-full max-w-[480px] bg-[#f7f0e6] shadow-[0_0_40px_rgba(90,50,20,0.12)]">
-        <section className="relative flex min-h-dvh flex-col overflow-hidden px-6 pb-10 pt-8 text-center">
-          <img
-            src={WEDDING_CONFIG.art.cover}
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          {PETALS.map((petal) => (
-            <span
-              key={petal.left}
-              className="invite-petal"
-              style={{
-                left: petal.left,
-                width: petal.size,
-                height: petal.size * 1.45,
-                animationDuration: petal.duration,
-                animationDelay: petal.delay,
-              }}
+        <section className="relative h-[150dvh]">
+          <div className="sticky top-0 flex h-dvh flex-col overflow-hidden px-6 pb-10 pt-8 text-center">
+          <div
+            className="absolute inset-0 will-change-transform"
+            style={{ transform: `translate3d(0, ${sceneShift}px, 0)` }}
+          >
+            <img
+              src={WEDDING_CONFIG.art.cover}
+              alt=""
+              className="absolute top-[-22%] left-1/2 h-[150%] w-[124%] max-w-none -translate-x-1/2 object-cover"
             />
-          ))}
+            {PETALS.map((petal) => (
+              <span
+                key={petal.left}
+                className="invite-petal"
+                style={{
+                  left: petal.left,
+                  width: petal.size,
+                  height: petal.size * 1.45,
+                  animationDuration: petal.duration,
+                  animationDelay: petal.delay,
+                }}
+              />
+            ))}
+          </div>
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#f7f0e6]" />
           <div className="relative z-10 flex justify-end">
             <button
               type="button"
@@ -219,12 +249,25 @@ export function IllustratedInvite({
               {t('invite.blessing')}
             </p>
           </div>
-          <p className="relative z-10 mt-auto pt-16 text-xs uppercase tracking-[0.28em] text-white [text-shadow:0_1px_6px_rgba(60,20,10,0.6)]">
+          <p
+            className="relative z-10 mt-auto pt-16 text-xs uppercase tracking-[0.28em] text-white [text-shadow:0_1px_6px_rgba(60,20,10,0.6)]"
+            style={{ opacity: Math.max(0, 1 - shift / 180) }}
+          >
             {t('invite.scroll')}
           </p>
+          </div>
         </section>
 
-        <section className="px-6 py-14">
+        <div className="relative z-10 -mt-[22vh]">
+          <img
+            src={WEDDING_CONFIG.art.paper}
+            alt=""
+            className="pointer-events-none absolute top-0 left-0 h-[130%] w-full object-cover will-change-transform"
+            style={{ transform: `translate3d(0, ${paperShift}px, 0)` }}
+          />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-transparent to-[#f7f0e6]" />
+          <div className="relative">
+        <section className="px-6 pt-6 pb-14">
           <p className="text-center text-[11px] uppercase tracking-[0.28em] text-[#a68456]">
             {t('invite.letter-kicker')}
           </p>
@@ -513,6 +556,8 @@ export function IllustratedInvite({
             </div>
           )}
         </section>
+          </div>
+        </div>
       </div>
 
       <button

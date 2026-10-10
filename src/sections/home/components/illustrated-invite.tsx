@@ -79,6 +79,7 @@ export function IllustratedInvite({
       image: WEDDING_CONFIG.art.haldi,
       shades: haldiShades,
       dress: '',
+      lines: [] as string[],
     },
     {
       title: t('invite.sangeet'),
@@ -87,6 +88,7 @@ export function IllustratedInvite({
       image: WEDDING_CONFIG.art.sangeet,
       shades: [],
       dress: t('invite.sangeet-dress'),
+      lines: [] as string[],
     },
     {
       title: t('invite.vidhi'),
@@ -95,6 +97,7 @@ export function IllustratedInvite({
       image: WEDDING_CONFIG.art.vidhi,
       shades: [],
       dress: t('invite.vidhi-dress'),
+      lines: [] as string[],
     },
     {
       title: t('invite.mangal'),
@@ -102,7 +105,13 @@ export function IllustratedInvite({
       when: t('invite.afternoon'),
       image: WEDDING_CONFIG.art.mangal,
       shades: [],
-      dress: t('invite.mangal-dress'),
+      dress: '',
+      lines: [
+        t('invite.mangal-look'),
+        t('invite.mangal-ladies'),
+        t('invite.mangal-gentlemen'),
+        t('invite.mangal-aunties'),
+      ],
     },
   ];
 
@@ -273,13 +282,17 @@ export function IllustratedInvite({
             alt={t('invite.ganpati')}
             className="mx-auto mt-4 h-56 w-auto object-contain"
           />
-          <p className="mt-6 font-serif text-2xl italic leading-snug text-[#3d2b22]">
+          <p className="mt-8 font-serif text-xl italic text-[#3d2b22]">
             {t('invite.invite-lead')}
           </p>
-          <p className="mt-2 font-serif text-2xl leading-snug text-[#3d2b22]">
-            {t('invite.families')}
+          <p className="mt-4 font-serif text-lg leading-relaxed whitespace-pre-line text-[#3d2b22]">
+            {t('invite.parents-todmal')}
           </p>
-          <p className="mt-4 font-serif text-xl leading-snug text-[#3d2b22]">
+          <span className="mx-auto mt-3 block w-8 border-t border-[#3d2b22]" />
+          <p className="mt-3 font-serif text-lg leading-relaxed whitespace-pre-line text-[#3d2b22]">
+            {t('invite.parents-thaluri')}
+          </p>
+          <p className="mt-6 font-serif text-lg italic leading-snug text-[#3d2b22]">
             {t('invite.invite-you')}
           </p>
           <p className="font-script mt-2 text-5xl text-[#6b2d3c]">{couple}</p>
@@ -341,6 +354,20 @@ export function IllustratedInvite({
                               {shade.name}
                             </p>
                           </div>
+                        ))}
+                      </div>
+                    ) : item.lines.length > 0 ? (
+                      <div className="mt-3 space-y-1">
+                        <p className="font-serif text-lg text-[#6b2d3c]">
+                          {item.lines[0]}
+                        </p>
+                        {item.lines.slice(1).map((line) => (
+                          <p
+                            key={line}
+                            className="font-serif text-base leading-snug text-[#4d3b32]"
+                          >
+                            {line}
+                          </p>
                         ))}
                       </div>
                     ) : (

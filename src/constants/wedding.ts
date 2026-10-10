@@ -15,12 +15,6 @@ export const WEDDING_CONFIG = {
   art: {
     cover: asset('/assets/theme/cover-sky.jpg'),
     paper: asset('/assets/theme/paper.jpg'),
-    garden: asset('/assets/theme/garden.jpg'),
-    letter: asset('/assets/theme/letter-wash.jpg'),
-    mandap: asset('/assets/theme/mandap.jpg'),
-    guests: asset('/assets/theme/guests.jpg'),
-    blessings: asset('/assets/theme/blessings.jpg'),
-    musicians: asset('/assets/theme/musicians.jpg'),
     haldi: asset('/assets/theme/haldi.jpg'),
     sangeet: asset('/assets/theme/sangeet.jpg'),
     vidhi: asset('/assets/theme/vidhi.jpg'),

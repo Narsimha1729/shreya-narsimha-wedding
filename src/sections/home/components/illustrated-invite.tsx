@@ -116,8 +116,8 @@ export function IllustratedInvite({
     };
   }, []);
 
-  const sceneShift = Math.min(shift, 900) * 0.34;
-  const paperShift = Math.min(shift * 0.14, 110);
+  const sceneShift = Math.min(shift, 500) * 0.12;
+  const gardenSwipe = Math.min(Math.max(shift - 160, 0), 1200) * 0.42;
 
   const beginMusic = () => {
     const audio = audioRef.current;
@@ -204,12 +204,12 @@ export function IllustratedInvite({
           <div className="sticky top-0 flex h-dvh flex-col overflow-hidden px-6 pb-10 pt-8 text-center">
           <div
             className="absolute inset-0 will-change-transform"
-            style={{ transform: `translate3d(0, ${sceneShift}px, 0)` }}
+            style={{ transform: `translate3d(0, ${-sceneShift}px, 0)` }}
           >
             <img
               src={WEDDING_CONFIG.art.cover}
               alt=""
-              className="absolute top-[-22%] left-1/2 h-[150%] w-[124%] max-w-none -translate-x-1/2 object-cover"
+              className="absolute inset-0 h-full w-full object-cover object-bottom"
             />
             {PETALS.map((petal) => (
               <span
@@ -225,7 +225,6 @@ export function IllustratedInvite({
               />
             ))}
           </div>
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#f7f0e6]" />
           <div className="relative z-10 flex justify-end">
             <button
               type="button"
@@ -258,16 +257,24 @@ export function IllustratedInvite({
           </div>
         </section>
 
-        <div className="relative z-10 -mt-[22vh]">
+        <section className="relative h-[88vh] overflow-hidden">
           <img
-            src={WEDDING_CONFIG.art.paper}
+            src={WEDDING_CONFIG.art.garden}
             alt=""
-            className="pointer-events-none absolute top-0 left-0 h-[130%] w-full object-cover will-change-transform"
-            style={{ transform: `translate3d(0, ${paperShift}px, 0)` }}
+            className="absolute top-0 left-0 h-full w-[220%] max-w-none object-cover will-change-transform"
+            style={{ transform: `translate3d(${-gardenSwipe}px, 0, 0)` }}
           />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-transparent to-[#f7f0e6]" />
+        </section>
+
+        <div className="relative">
+        <section className="relative overflow-hidden px-6 pt-10 pb-14">
+          <img
+            src={WEDDING_CONFIG.art.letter}
+            alt=""
+            className="pointer-events-none absolute inset-0 h-full w-[140%] max-w-none object-cover"
+            style={{ transform: `translate3d(${-Math.min(shift, 2000) * 0.04}px, 0, 0)` }}
+          />
           <div className="relative">
-        <section className="px-6 pt-6 pb-14">
           <p className="text-center text-[11px] uppercase tracking-[0.28em] text-[#a68456]">
             {t('invite.letter-kicker')}
           </p>
@@ -283,9 +290,15 @@ export function IllustratedInvite({
             </p>
             <p className="font-script mt-1 text-4xl text-[#8a4a3a]">{couple}</p>
           </div>
+          </div>
         </section>
 
-        <section className="px-6 pb-14">
+        <section className="px-6 pt-8 pb-14">
+          <img
+            src={WEDDING_CONFIG.art.mandap}
+            alt=""
+            className="mb-6 h-80 w-full rounded-3xl object-cover object-[center_40%]"
+          />
           <p className="text-center text-[11px] uppercase tracking-[0.28em] text-[#a68456]">
             {t('invite.events-kicker')}
           </p>
@@ -360,6 +373,11 @@ export function IllustratedInvite({
         </section>
 
         <section className="px-6 pb-14">
+          <img
+            src={WEDDING_CONFIG.art.guests}
+            alt=""
+            className="mb-6 h-72 w-full rounded-3xl object-cover"
+          />
           <p className="text-center text-[11px] uppercase tracking-[0.28em] text-[#a68456]">
             {t('invite.rsvp-kicker')}
           </p>
@@ -476,7 +494,12 @@ export function IllustratedInvite({
         </section>
 
         <section className="px-6 pb-14">
-          <div className="rounded-3xl border border-[#eadcc4] bg-[#fffaf3] px-6 py-8 text-center">
+          <img
+            src={WEDDING_CONFIG.art.blessings}
+            alt=""
+            className="mb-6 h-72 w-full rounded-3xl object-cover"
+          />
+          <div className="rounded-3xl border border-[#eadcc4] bg-[#fffaf3]/90 px-6 py-8 text-center">
             <p className="text-[11px] uppercase tracking-[0.28em] text-[#a68456]">
               {t('invite.gifts-kicker')}
             </p>
@@ -489,7 +512,14 @@ export function IllustratedInvite({
           </div>
         </section>
 
-        <section className="pb-14">
+        <section className="relative overflow-hidden pb-14">
+          <img
+            src={WEDDING_CONFIG.art.garden}
+            alt=""
+            className="pointer-events-none absolute top-0 left-0 h-full w-[180%] max-w-none object-cover opacity-25"
+            style={{ transform: `translate3d(${-gardenSwipe * 0.35}px, 0, 0)` }}
+          />
+          <div className="relative">
           <p className="px-6 text-center text-[11px] uppercase tracking-[0.28em] text-[#a68456]">
             {t('invite.gallery-kicker')}
           </p>
@@ -531,9 +561,15 @@ export function IllustratedInvite({
               </figure>
             ))}
           </div>
+          </div>
         </section>
 
         <section className="px-6 pb-24">
+          <img
+            src={WEDDING_CONFIG.art.musicians}
+            alt=""
+            className="mb-6 h-72 w-full rounded-3xl object-cover"
+          />
           <p className="text-center text-[11px] uppercase tracking-[0.28em] text-[#a68456]">
             {t('invite.film-kicker')}
           </p>
@@ -556,7 +592,6 @@ export function IllustratedInvite({
             </div>
           )}
         </section>
-          </div>
         </div>
       </div>
 

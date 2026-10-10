@@ -4,7 +4,6 @@ import { useEffect, useRef, useState, type FormEvent, type RefObject } from 'rea
 import { useTranslation } from 'react-i18next';
 import { WEDDING_CONFIG } from '@/constants';
 import { generateMapLink } from '@/lib/wedding-utils';
-import { useTranslate } from '@/locales';
 
 const PETALS = [
   { left: '6%', delay: '0s', duration: '13s', size: 12 },
@@ -41,7 +40,6 @@ export function IllustratedInvite({
   audioRef: RefObject<HTMLAudioElement | null>;
 }) {
   const { t } = useTranslation('home');
-  const { onChangeLang, currentLang } = useTranslate();
   const galleryRef = useRef<HTMLDivElement>(null);
   const started = useRef(false);
   const [playing, setPlaying] = useState(false);
@@ -61,7 +59,6 @@ export function IllustratedInvite({
   });
 
   const couple = `${WEDDING_CONFIG.bride.name} & ${WEDDING_CONFIG.groom.name}`;
-  const isKannada = currentLang?.value === 'kn';
   const film = youtubeEmbed(WEDDING_CONFIG.film);
   const ceremonyMap = generateMapLink(WEDDING_CONFIG.venue.ceremony.mapQuery);
   const stayMap = generateMapLink(WEDDING_CONFIG.venue.reception.mapQuery);
@@ -70,7 +67,7 @@ export function IllustratedInvite({
     {
       title: t('invite.haldi'),
       date: t('invite.date-18'),
-      when: t('invite.evening'),
+      when: t('invite.late-afternoon'),
       image: WEDDING_CONFIG.art.haldi,
     },
     {
@@ -222,15 +219,6 @@ export function IllustratedInvite({
             ))}
           </div>
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#f7f0e6]" />
-          <div className="relative z-10 flex justify-end">
-            <button
-              type="button"
-              onClick={() => onChangeLang(isKannada ? 'en' : 'kn')}
-              className="rounded-full bg-white/75 px-3 py-1 text-xs tracking-wide text-[#6b3a42]"
-            >
-              {isKannada ? 'EN' : 'ಕನ್ನಡ'}
-            </button>
-          </div>
           <div className="relative z-10 mt-10">
             <h1 className="font-script text-7xl leading-none text-[#6b2d3c] [text-shadow:0_2px_16px_rgba(255,255,255,0.9)]">
               {WEDDING_CONFIG.bride.name}
@@ -489,6 +477,9 @@ export function IllustratedInvite({
               >
                 {sending ? t('invite.sending') : t('invite.send')}
               </button>
+              <p className="font-serif text-base leading-relaxed text-[#5c463c]">
+                {t('invite.rsvp-note')}
+              </p>
             </form>
           )}
         </section>

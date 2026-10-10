@@ -8,22 +8,24 @@ function doPost(e) {
     sheet.appendRow([
       'Submitted at',
       'Name',
-      'Email',
       'Attending',
-      'Guests',
-      'Dietary notes',
-      'Message',
+      'People coming with them',
+      'Arrival date',
+      'Arrival time',
+      'Departure date',
+      'Departure time',
     ]);
   }
 
   sheet.appendRow([
     body.submittedAt || new Date().toISOString(),
     body.name || '',
-    body.email || '',
     body.attendance || '',
-    body.guests || '',
-    body.dietaryRestrictions || '',
-    body.message || '',
+    body.extraGuests || '',
+    body.arrivalDate || '',
+    body.arrivalTime || '',
+    body.departureDate || '',
+    body.departureTime || '',
   ]);
 
   return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(

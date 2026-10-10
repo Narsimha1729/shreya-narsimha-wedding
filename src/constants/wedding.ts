@@ -10,6 +10,16 @@ export const WEDDING_CONFIG = {
     title: 'Sukh Kalale',
     src: asset('/assets/audio/sukh-kalale.mp3'),
   },
+  /** Couple film. Leave empty until the YouTube link is ready. */
+  film: '',
+  art: {
+    cover: asset('/assets/theme/cover-sky.jpg'),
+    paper: asset('/assets/theme/paper.jpg'),
+    haldi: asset('/assets/theme/haldi.jpg'),
+    sangeet: asset('/assets/theme/sangeet.jpg'),
+    vidhi: asset('/assets/theme/vidhi.jpg'),
+    mangal: asset('/assets/theme/mangal-ashtak.jpg'),
+  },
   cover: asset('/assets/images/gallery/01.jpeg'),
   bride: {
     name: 'Shreya',

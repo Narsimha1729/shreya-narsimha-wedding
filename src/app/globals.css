@@ -8,24 +8,40 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-poppins: var(--font-poppins);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html {
-  scroll-snap-type: y mandatory;
+  --font-sans: var(--font-poppins);
+  --font-serif: var(--font-cormorant);
+  --font-script: var(--font-great-vibes);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
+  background: #f4eadc;
+  color: #3d2b22;
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+@keyframes invite-fall {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(24px, 108vh, 0) rotate(260deg);
+    opacity: 0;
+  }
+}
+
+.invite-petal {
+  position: absolute;
+  top: 0;
+  border-radius: 80% 0 80% 0;
+  background: linear-gradient(135deg, #f7b7c4, #c44766);
+  animation-name: invite-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  pointer-events: none;
 }
 
 .one-screen .py-20,
@@ -75,6 +91,3 @@ body {
   height: 2.75rem;
 }
 
-* {
-  font-family: var(--font-poppins);
-}

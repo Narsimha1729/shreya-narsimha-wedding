@@ -15,6 +15,14 @@ const PETALS = [
   { left: '92%', delay: '3s', duration: '17s', size: 11 },
 ];
 
+const EVENT_PETALS = [
+  { left: '8%', delay: '0s', duration: '9s', size: 9 },
+  { left: '28%', delay: '2.4s', duration: '11s', size: 7 },
+  { left: '48%', delay: '1.1s', duration: '10s', size: 11 },
+  { left: '70%', delay: '3.6s', duration: '12s', size: 8 },
+  { left: '88%', delay: '0.8s', duration: '9.5s', size: 10 },
+];
+
 const inputClass =
   'w-full rounded-xl border border-[#e2d0b4] bg-white/80 px-3 py-2.5 text-base text-[#3d2b22] outline-none focus:border-[#b8894a]';
 
@@ -105,6 +113,8 @@ export function IllustratedInvite() {
       date: t('invite.date-18'),
       when: t('invite.late-afternoon'),
       image: WEDDING_CONFIG.art.haldi,
+      focus: 'center 78%',
+      petal: 'linear-gradient(135deg, #f6d36a, #e08a2f)',
       shades: haldiShades,
       dress: '',
       lines: [] as string[],
@@ -114,6 +124,8 @@ export function IllustratedInvite() {
       date: t('invite.date-18'),
       when: t('invite.evening'),
       image: WEDDING_CONFIG.art.sangeet,
+      focus: 'center 80%',
+      petal: 'linear-gradient(135deg, #f7c3d2, #c45c7a)',
       shades: [],
       dress: t('invite.sangeet-dress'),
       lines: [] as string[],
@@ -123,6 +135,8 @@ export function IllustratedInvite() {
       date: t('invite.date-19'),
       when: t('invite.morning'),
       image: WEDDING_CONFIG.art.vidhi,
+      focus: 'center 68%',
+      petal: 'linear-gradient(135deg, #f3b0c4, #c44766)',
       shades: [],
       dress: t('invite.vidhi-dress'),
       lines: [] as string[],
@@ -132,6 +146,8 @@ export function IllustratedInvite() {
       date: t('invite.date-19'),
       when: t('invite.afternoon'),
       image: WEDDING_CONFIG.art.mangal,
+      focus: 'center 92%',
+      petal: 'linear-gradient(135deg, #f6d98a, #c69214)',
       shades: [],
       dress: '',
       lines: [
@@ -436,11 +452,28 @@ export function IllustratedInvite() {
                 key={item.title}
                 className="overflow-hidden rounded-3xl border border-[#eadcc4] bg-white/80 shadow-sm"
               >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="h-64 w-full object-cover"
-                />
+                <div className="relative h-80 overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="event-scene absolute inset-[-8%] h-[116%] w-[116%] max-w-none object-cover"
+                    style={{ objectPosition: item.focus }}
+                  />
+                  {EVENT_PETALS.map((petal) => (
+                    <span
+                      key={petal.left}
+                      className="event-petal"
+                      style={{
+                        left: petal.left,
+                        width: petal.size,
+                        height: petal.size * 1.45,
+                        animationDuration: petal.duration,
+                        animationDelay: petal.delay,
+                        background: item.petal,
+                      }}
+                    />
+                  ))}
+                </div>
                 <div className="px-5 py-5 text-center">
                   <h3 className="font-script text-5xl text-[#6b2d3c]">
                     {item.title}

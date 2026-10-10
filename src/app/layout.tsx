@@ -26,7 +26,7 @@ const script = Great_Vibes({
 export const metadata: Metadata = {
   title: 'Shreya & Narsimha',
   description:
-    'A wedding invitation for Shreya and Narsimha, with their photographs and the song Sukh Kalale.',
+    'A wedding invitation for Shreya and Narsimha, with their photographs and the song Love.',
   openGraph: {
     title: 'Shreya & Narsimha',
     description:

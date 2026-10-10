@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, type FormEvent, type RefObject } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { WEDDING_CONFIG } from '@/constants';
 import { generateMapLink } from '@/lib/wedding-utils';
@@ -18,6 +18,34 @@ const PETALS = [
 const inputClass =
   'w-full rounded-xl border border-[#e2d0b4] bg-white/80 px-3 py-2.5 text-base text-[#3d2b22] outline-none focus:border-[#b8894a]';
 
+type SongPlayer = {
+  playVideo: () => void;
+  pauseVideo: () => void;
+  getPlayerState: () => number;
+};
+
+declare global {
+  interface Window {
+    YT?: {
+      Player: new (
+        element: HTMLElement,
+        options: {
+          videoId: string;
+          width: string;
+          height: string;
+          playerVars: Record<string, number | string>;
+          events: {
+            onReady: () => void;
+            onStateChange: (event: { data: number }) => void;
+          };
+        },
+      ) => SongPlayer;
+      PlayerState: { PLAYING: number };
+    };
+    onYouTubeIframeAPIReady?: () => void;
+  }
+}
+
 function youtubeEmbed(url: string) {
   if (!url) return '';
 
@@ -34,13 +62,13 @@ function youtubeEmbed(url: string) {
   }
 }
 
-export function IllustratedInvite({
-  audioRef,
-}: {
-  audioRef: RefObject<HTMLAudioElement | null>;
-}) {
+export function IllustratedInvite() {
   const { t } = useTranslation('home');
   const galleryRef = useRef<HTMLDivElement>(null);
+  const songHostRef = useRef<HTMLDivElement>(null);
+  const songRef = useRef<SongPlayer | null>(null);
+  const songReady = useRef(false);
+  const wantSong = useRef(false);
   const started = useRef(false);
   const [playing, setPlaying] = useState(false);
   const [sending, setSending] = useState(false);
@@ -134,32 +162,96 @@ export function IllustratedInvite({
     };
   }, []);
 
+  useEffect(() => {
+    const mountSong = () => {
+      if (!songHostRef.current || songRef.current || !window.YT) return;
+
+      songRef.current = new window.YT.Player(songHostRef.current, {
+        videoId: WEDDING_CONFIG.song.youtubeId,
+        width: '200',
+        height: '200',
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          loop: 1,
+          playlist: WEDDING_CONFIG.song.youtubeId,
+          modestbranding: 1,
+          playsinline: 1,
+          rel: 0,
+        },
+        events: {
+          onReady: () => {
+            songReady.current = true;
+
+            if (wantSong.current) {
+              songRef.current?.playVideo();
+              setPlaying(true);
+            }
+          },
+          onStateChange: (event) => {
+            setPlaying(event.data === window.YT?.PlayerState.PLAYING);
+          },
+        },
+      });
+    };
+
+    if (window.YT?.Player) {
+      mountSong();
+
+      return;
+    }
+
+    const previous = window.onYouTubeIframeAPIReady;
+
+    window.onYouTubeIframeAPIReady = () => {
+      previous?.();
+      mountSong();
+    };
+
+    if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+      const script = document.createElement('script');
+
+      script.src = 'https://www.youtube.com/iframe_api';
+      document.body.appendChild(script);
+    }
+  }, []);
+
   const sceneShift = Math.min(shift, 900) * 0.34;
   const paperShift = Math.min(shift * 0.14, 110);
 
   const beginMusic = () => {
-    const audio = audioRef.current;
-
-    if (!audio || started.current) return;
+    if (started.current) return;
 
     started.current = true;
-    audio.play().then(() => setPlaying(true)).catch(() => {
-      started.current = false;
-    });
+    wantSong.current = true;
+
+    if (songReady.current) {
+      songRef.current?.playVideo();
+      setPlaying(true);
+    }
   };
 
   const toggleMusic = () => {
-    const audio = audioRef.current;
-
-    if (!audio) return;
-
-    if (audio.paused) {
-      audio.play().then(() => setPlaying(true)).catch(() => undefined);
+    if (!songReady.current || !songRef.current) {
+      wantSong.current = true;
       started.current = true;
-    } else {
-      audio.pause();
-      setPlaying(false);
+
+      return;
     }
+
+    if (songRef.current.getPlayerState() === window.YT?.PlayerState.PLAYING) {
+      songRef.current.pauseVideo();
+      setPlaying(false);
+
+      return;
+    }
+
+    wantSong.current = true;
+    started.current = true;
+    songRef.current.playVideo();
+    setPlaying(true);
   };
 
   const slideGallery = (direction: number) => {
@@ -217,6 +309,10 @@ export function IllustratedInvite({
         beginMusic();
       }}
     >
+      <div
+        ref={songHostRef}
+        className="pointer-events-none fixed top-0 left-[-1000px] h-[200px] w-[200px]"
+      />
       <div className="mx-auto min-h-dvh w-full max-w-[480px] bg-[#f7f0e6] shadow-[0_0_40px_rgba(90,50,20,0.12)]">
         <section className="relative h-[150dvh]">
           <div className="sticky top-0 flex h-dvh flex-col overflow-hidden px-6 pb-10 pt-8 text-center">

@@ -7,8 +7,8 @@ export const WEDDING_CONFIG = {
   date: new Date('2026-12-18T00:00:00+05:30'),
   weddingDate: new Date('2026-12-19T00:00:00+05:30'),
   song: {
-    title: 'Sukh Kalale',
-    src: asset('/assets/audio/sukh-kalale.mp3'),
+    title: 'Love',
+    youtubeId: 'kUUOlB_L2sA',
   },
   /** Couple film. */
   film: 'https://youtu.be/XdtlVIR7Csk',

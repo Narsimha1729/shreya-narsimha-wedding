@@ -44,49 +44,31 @@ body {
   pointer-events: none;
 }
 
-@keyframes event-drift {
-  0%,
-  100% {
-    transform: scale(1) translate3d(0, 0, 0);
-  }
-  50% {
-    transform: scale(1.08) translate3d(-2%, -1.5%, 0);
-  }
-}
-
 @keyframes event-petal-fall {
   0% {
-    transform: translate3d(0, -16px, 0) rotate(0deg);
+    top: -8%;
+    transform: translate3d(0, 0, 0) rotate(-16deg);
     opacity: 0;
   }
-  16% {
-    opacity: 0.9;
+  12% {
+    opacity: 1;
   }
   100% {
-    transform: translate3d(18px, 340px, 0) rotate(210deg);
+    top: 106%;
+    transform: translate3d(var(--sway, 18px), 0, 0) rotate(220deg);
     opacity: 0;
   }
-}
-
-.event-scene {
-  animation: event-drift 18s ease-in-out infinite;
 }
 
 .event-petal {
   position: absolute;
-  top: 0;
+  top: -8%;
   border-radius: 80% 0 80% 0;
   animation-name: event-petal-fall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .event-scene,
-  .event-petal {
-    animation: none;
-  }
+  z-index: 1;
 }
 
 .one-screen .py-20,

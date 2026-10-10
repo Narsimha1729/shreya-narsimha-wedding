@@ -285,17 +285,27 @@ export function IllustratedInvite({
           <p className="mt-8 font-serif text-xl italic text-[#3d2b22]">
             {t('invite.invite-lead')}
           </p>
-          <p className="mt-4 font-serif text-lg leading-relaxed whitespace-pre-line text-[#3d2b22]">
+          <p className="mt-2 font-serif text-lg text-[#3d2b22]">
+            {t('invite.families')}
+          </p>
+          <p className="mt-5 font-serif text-base italic text-[#8a4a3a]">
+            {t('invite.daughter-of')}
+          </p>
+          <p className="mt-2 font-serif text-lg leading-relaxed whitespace-pre-line text-[#3d2b22]">
             {t('invite.parents-todmal')}
           </p>
-          <span className="mx-auto mt-3 block w-8 border-t border-[#3d2b22]" />
-          <p className="mt-3 font-serif text-lg leading-relaxed whitespace-pre-line text-[#3d2b22]">
+          <p className="mt-5 font-serif text-base italic text-[#8a4a3a]">
+            {t('invite.son-of')}
+          </p>
+          <p className="mt-2 font-serif text-lg leading-relaxed whitespace-pre-line text-[#3d2b22]">
             {t('invite.parents-thaluri')}
           </p>
           <p className="mt-6 font-serif text-lg italic leading-snug text-[#3d2b22]">
             {t('invite.invite-you')}
           </p>
-          <p className="font-script mt-2 text-5xl text-[#6b2d3c]">{couple}</p>
+          <p className="font-script mt-2 text-5xl leading-tight text-[#6b2d3c]">
+            {t('invite.couple-names')}
+          </p>
           <div className="mt-8 rounded-3xl border border-[#eadcc4] bg-white/75 px-6 py-8 text-left shadow-sm">
             <p className="font-serif text-2xl italic text-[#6b2d3c]">
               {t('invite.letter-dear')}

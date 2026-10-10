@@ -117,9 +117,8 @@ export function IllustratedInvite() {
       petal: 'linear-gradient(135deg, #f6d36a, #e08a2f)',
       paintedTitle: true,
       copyTop: '29%',
-      mask: '74%',
-      maskEnd: '84%',
-      flame: { left: '11%', top: '78%' },
+      copyLeft: '12%',
+      copyRight: '12%',
       shades: haldiShades,
       dress: '',
       lines: [] as string[],
@@ -131,10 +130,9 @@ export function IllustratedInvite() {
       image: WEDDING_CONFIG.art.sangeet,
       petal: 'linear-gradient(135deg, #f7c3d2, #c45c7a)',
       paintedTitle: false,
-      copyTop: '21%',
-      mask: '60%',
-      maskEnd: '72%',
-      flame: null,
+      copyTop: '22%',
+      copyLeft: '30%',
+      copyRight: '6%',
       shades: [],
       dress: t('invite.sangeet-dress'),
       lines: [] as string[],
@@ -147,9 +145,8 @@ export function IllustratedInvite() {
       petal: 'linear-gradient(135deg, #f3b0c4, #c44766)',
       paintedTitle: false,
       copyTop: '18%',
-      mask: '66%',
-      maskEnd: '78%',
-      flame: null,
+      copyLeft: '14%',
+      copyRight: '14%',
       shades: [],
       dress: t('invite.vidhi-dress'),
       lines: [] as string[],
@@ -161,10 +158,9 @@ export function IllustratedInvite() {
       image: WEDDING_CONFIG.art.mangal,
       petal: 'linear-gradient(135deg, #f6d98a, #c69214)',
       paintedTitle: false,
-      copyTop: '8%',
-      mask: '64%',
-      maskEnd: '76%',
-      flame: { left: '84%', top: '84%' },
+      copyTop: '26%',
+      copyLeft: '18%',
+      copyRight: '10%',
       shades: [],
       dress: '',
       lines: [
@@ -474,16 +470,6 @@ export function IllustratedInvite() {
                   alt={item.title}
                   className="block h-auto w-full"
                 />
-                <img
-                  src={item.image}
-                  alt=""
-                  aria-hidden
-                  className="scene-people pointer-events-none absolute inset-0 h-full w-full"
-                  style={{
-                    maskImage: `linear-gradient(to bottom, transparent ${item.mask}, #000 ${item.maskEnd})`,
-                    WebkitMaskImage: `linear-gradient(to bottom, transparent ${item.mask}, #000 ${item.maskEnd})`,
-                  }}
-                />
                 {EVENT_PETALS.map((petal) => (
                   <span
                     key={petal.left}
@@ -499,15 +485,13 @@ export function IllustratedInvite() {
                     }}
                   />
                 ))}
-                {item.flame ? (
-                  <span
-                    className="scene-flame"
-                    style={{ left: item.flame.left, top: item.flame.top }}
-                  />
-                ) : null}
                 <div
-                  className="pointer-events-none absolute inset-x-[12%] z-10 text-center"
-                  style={{ top: item.copyTop }}
+                  className="pointer-events-none absolute z-10 text-center"
+                  style={{
+                    top: item.copyTop,
+                    left: item.copyLeft,
+                    right: item.copyRight,
+                  }}
                 >
                   {item.paintedTitle ? null : (
                     <h3 className="font-script text-[2.7rem] leading-none text-[#6b2d3c]">

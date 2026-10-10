@@ -71,45 +71,6 @@ body {
   z-index: 1;
 }
 
-@keyframes people-breathe {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(3px, -5px, 0);
-  }
-}
-
-.scene-people {
-  animation: people-breathe 5.5s ease-in-out infinite;
-}
-
-@keyframes scene-flame {
-  0%,
-  100% {
-    transform: scale(1, 1) translateY(0);
-    opacity: 0.55;
-  }
-  50% {
-    transform: scale(1.2, 1.45) translateY(-4px);
-    opacity: 0.95;
-  }
-}
-
-.scene-flame {
-  position: absolute;
-  z-index: 1;
-  width: 22px;
-  height: 32px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff6c8 0%, #f0a020 55%, transparent 72%);
-  filter: blur(0.6px);
-  mix-blend-mode: screen;
-  animation: scene-flame 1.3s ease-in-out infinite;
-  pointer-events: none;
-}
-
 .one-screen .py-20,
 .one-screen .py-16,
 .one-screen .py-12 {

@@ -63,30 +63,46 @@ export function IllustratedInvite({
   const ceremonyMap = generateMapLink(WEDDING_CONFIG.venue.ceremony.mapQuery);
   const stayMap = generateMapLink(WEDDING_CONFIG.venue.reception.mapQuery);
 
+  const haldiShades = [
+    { name: t('invite.shade-yellow'), color: '#F4D35E' },
+    { name: t('invite.shade-mustard'), color: '#C69214' },
+    { name: t('invite.shade-orange'), color: '#C45C26' },
+    { name: t('invite.shade-turmeric'), color: '#E0A106' },
+    { name: t('invite.shade-saffron'), color: '#E08A2F' },
+  ];
+
   const events = [
     {
       title: t('invite.haldi'),
       date: t('invite.date-18'),
       when: t('invite.late-afternoon'),
       image: WEDDING_CONFIG.art.haldi,
+      shades: haldiShades,
+      dress: '',
     },
     {
       title: t('invite.sangeet'),
       date: t('invite.date-18'),
       when: t('invite.evening'),
       image: WEDDING_CONFIG.art.sangeet,
+      shades: [],
+      dress: t('invite.sangeet-dress'),
     },
     {
       title: t('invite.vidhi'),
       date: t('invite.date-19'),
       when: t('invite.morning'),
       image: WEDDING_CONFIG.art.vidhi,
+      shades: [],
+      dress: t('invite.vidhi-dress'),
     },
     {
       title: t('invite.mangal'),
       date: t('invite.date-19'),
       when: t('invite.afternoon'),
       image: WEDDING_CONFIG.art.mangal,
+      shades: [],
+      dress: t('invite.mangal-dress'),
     },
   ];
 
@@ -309,11 +325,29 @@ export function IllustratedInvite({
                   <p className="mt-3 text-sm leading-relaxed text-[#5c463c]">
                     {WEDDING_CONFIG.venue.ceremony.name}
                   </p>
-                  <div className="mt-5 text-left">
+                  <div className="mt-5">
                     <p className="text-[11px] uppercase tracking-[0.22em] text-[#a68456]">
                       {t('invite.dress')}
                     </p>
-                    <div className="mt-2 h-12 rounded-xl border border-dashed border-[#c6a56a] bg-transparent" />
+                    {item.shades.length > 0 ? (
+                      <div className="mt-3 grid grid-cols-5 gap-2">
+                        {item.shades.map((shade) => (
+                          <div key={shade.name}>
+                            <div
+                              className="h-12 rounded-xl border border-[#eadcc4]"
+                              style={{ backgroundColor: shade.color }}
+                            />
+                            <p className="mt-1 text-center text-[10px] leading-tight text-[#5c463c]">
+                              {shade.name}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="mt-2 text-center font-serif text-lg leading-relaxed text-[#4d3b32]">
+                        {item.dress}
+                      </p>
+                    )}
                   </div>
                 </div>
               </article>

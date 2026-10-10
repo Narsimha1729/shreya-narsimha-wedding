@@ -241,9 +241,6 @@ export function IllustratedInvite({
             <h1 className="font-script text-7xl leading-none text-[#6b2d3c] [text-shadow:0_2px_16px_rgba(255,255,255,0.9)]">
               {WEDDING_CONFIG.groom.name}
             </h1>
-            <p className="mx-auto mt-5 max-w-[17rem] rounded-2xl bg-white/75 px-4 py-3 font-serif text-sm leading-relaxed text-[#4a2c24]">
-              {t('invite.blessing')}
-            </p>
           </div>
           <p
             className="relative z-10 mt-auto pt-16 text-xs uppercase tracking-[0.28em] text-white [text-shadow:0_1px_6px_rgba(60,20,10,0.6)]"
@@ -263,7 +260,28 @@ export function IllustratedInvite({
           />
           <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-transparent to-[#f7f0e6]" />
           <div className="relative">
-        <section className="px-6 pt-6 pb-14">
+        <section className="px-8 pt-28 pb-10 text-center">
+          <p className="font-serif text-base tracking-wide text-[#3d2b22]">
+            {t('invite.invocation')}
+          </p>
+          <img
+            src={WEDDING_CONFIG.art.ganpati}
+            alt={t('invite.ganpati')}
+            className="mx-auto mt-4 h-56 w-auto object-contain"
+          />
+          <p className="mt-6 font-serif text-2xl italic leading-snug text-[#3d2b22]">
+            {t('invite.invite-lead')}
+          </p>
+          <p className="mt-3 font-serif text-2xl leading-snug text-[#3d2b22]">
+            {t('invite.families')}
+          </p>
+          <span className="mx-auto mt-5 block h-px w-10 bg-[#3d2b22]" />
+          <p className="mt-5 font-serif text-5xl tracking-[0.22em] text-[#1c140f] uppercase">
+            {t('invite.invite-word')}
+          </p>
+        </section>
+
+        <section className="px-6 pt-2 pb-14">
           <p className="text-center text-[11px] uppercase tracking-[0.28em] text-[#a68456]">
             {t('invite.letter-kicker')}
           </p>

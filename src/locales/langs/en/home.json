@@ -202,6 +202,11 @@
   "invite": {
     "weds": "weds",
     "blessing": "With the blessings of the Todmal and Thalluri families",
+    "invocation": "ॐ श्री गणेशाय नमः",
+    "ganpati": "Lord Ganesha",
+    "invite-lead": "With the heavenly blessings of",
+    "families": "the Todmal and Thalluri families",
+    "invite-word": "Invite",
     "scroll": "Scroll",
     "letter-kicker": "A letter",
     "letter-dear": "Dear friend,",

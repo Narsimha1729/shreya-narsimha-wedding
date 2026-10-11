@@ -490,23 +490,23 @@ export function IllustratedInvite() {
                   }}
                 >
                   <h3
-                    className={`font-script leading-none text-[#6b2d3c] ${item.compact ? 'text-[2.15rem]' : 'text-[2.7rem]'}`}
+                    className={`font-script leading-none text-[#6b2d3c] ${item.compact ? 'mx-auto max-w-[7.5rem] text-[1.85rem]' : 'text-[2.15rem]'}`}
                   >
                     {item.title}
                   </h3>
                   <div
-                    className={`flex items-center gap-2 text-[#b08958] ${item.compact ? 'mt-1.5' : 'mt-3'}`}
+                    className={`flex items-center gap-2 text-[#b08958] ${item.compact ? 'mt-1' : 'mt-2'}`}
                   >
                     <span className="h-px flex-1 bg-current" />
-                    <p className="font-serif text-[15px] whitespace-nowrap text-[#5c4033]">
+                    <p className="font-serif text-[13px] whitespace-nowrap text-[#5c4033]">
                       {item.date}
                     </p>
                     <span className="h-px flex-1 bg-current" />
                   </div>
-                  <p className="mt-2 flex items-center justify-center gap-1.5 font-serif text-[15px] text-[#3d2b22]">
+                  <p className="mt-1.5 flex items-center justify-center gap-1.5 font-serif text-[13px] text-[#3d2b22]">
                     <svg
                       viewBox="0 0 24 24"
-                      className="h-3.5 w-3.5 shrink-0"
+                      className="h-3 w-3 shrink-0"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="1.6"
@@ -517,10 +517,10 @@ export function IllustratedInvite() {
                     </svg>
                     <span className="capitalize">{item.when}</span>
                   </p>
-                  <p className="mt-1 flex items-center justify-center gap-1.5 font-serif text-[15px] text-[#3d2b22]">
+                  <p className="mt-1 flex items-center justify-center gap-1.5 font-serif text-[13px] text-[#3d2b22]">
                     <svg
                       viewBox="0 0 24 24"
-                      className="h-3.5 w-3.5 shrink-0"
+                      className="h-3 w-3 shrink-0"
                       fill="currentColor"
                       aria-hidden="true"
                     >
@@ -528,7 +528,7 @@ export function IllustratedInvite() {
                     </svg>
                     {WEDDING_CONFIG.venue.ceremony.name}
                   </p>
-                  <p className="mt-2 font-serif text-lg capitalize text-[#3d2b22]">
+                  <p className="mt-1.5 font-serif text-[15px] capitalize text-[#3d2b22]">
                     {t('invite.dress')}
                   </p>
                   {item.shades.length > 0 ? (
@@ -550,14 +550,14 @@ export function IllustratedInvite() {
                       {item.lines.map((line) => (
                         <p
                           key={line}
-                          className="font-serif text-[15px] leading-snug text-[#3d2b22]"
+                          className="font-serif text-[13px] leading-snug text-[#3d2b22]"
                         >
                           {line}
                         </p>
                       ))}
                     </div>
                   ) : (
-                    <p className="mt-1 font-serif text-[15px] leading-snug text-[#3d2b22]">
+                    <p className="mt-1 font-serif text-[13px] leading-snug text-[#3d2b22]">
                       {item.dress}
                     </p>
                   )}

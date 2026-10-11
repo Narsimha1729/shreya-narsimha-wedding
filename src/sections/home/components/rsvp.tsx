@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
+import { WEDDING_CONFIG } from '@/constants/wedding';
 
 export const RSVP = () => {
   const { t } = useTranslation('home');
@@ -30,7 +31,7 @@ export const RSVP = () => {
     e.preventDefault();
     setError('');
 
-    const url = process.env.NEXT_PUBLIC_RSVP_URL;
+    const url = WEDDING_CONFIG.rsvpUrl;
 
     if (!url) {
       setError(

@@ -12,6 +12,9 @@ export const WEDDING_CONFIG = {
   },
   /** Couple film. */
   film: 'https://youtu.be/XdtlVIR7Csk',
+  rsvpUrl:
+    process.env.NEXT_PUBLIC_RSVP_URL ||
+    'https://script.google.com/macros/s/AKfycbxghrj1_vrVKKny98XV4GGXsPtBYpPmiEMpHaVNQMu0GFAu4OKLeMqmW9pm9x3a6oYwOA/exec',
   art: {
     cover: asset('/assets/theme/cover-sky.jpg'),
     paper: asset('/assets/theme/paper.jpg'),

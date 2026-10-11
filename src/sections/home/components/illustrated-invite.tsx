@@ -293,7 +293,7 @@ export function IllustratedInvite() {
     event.preventDefault();
     setError('');
 
-    const url = process.env.NEXT_PUBLIC_RSVP_URL;
+    const url = WEDDING_CONFIG.rsvpUrl;
 
     if (!url) {
       setError(t('invite.sheet-waiting'));

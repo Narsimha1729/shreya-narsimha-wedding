@@ -489,16 +489,39 @@ export function IllustratedInvite() {
                   <h3 className="font-script text-[2.7rem] leading-none text-[#6b2d3c]">
                     {item.title}
                   </h3>
-                  <p className="mt-1 font-serif text-base text-[#4d3b32]">
-                    {item.date}
+                  <div className="mt-3 flex items-center gap-2 text-[#b08958]">
+                    <span className="h-px flex-1 bg-current" />
+                    <p className="font-serif text-[15px] whitespace-nowrap text-[#5c4033]">
+                      {item.date}
+                    </p>
+                    <span className="h-px flex-1 bg-current" />
+                  </div>
+                  <p className="mt-2 flex items-center justify-center gap-1.5 font-serif text-[15px] text-[#3d2b22]">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-3.5 w-3.5 shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="12" r="8.5" />
+                      <path d="M12 8v4.5l2.5 1.5" strokeLinecap="round" />
+                    </svg>
+                    <span className="capitalize">{item.when}</span>
                   </p>
-                  <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[#a68456]">
-                    {item.when}
-                  </p>
-                  <p className="mt-1 text-sm text-[#5c463c]">
+                  <p className="mt-1 flex items-center justify-center gap-1.5 font-serif text-[15px] text-[#3d2b22]">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-3.5 w-3.5 shrink-0"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 2.5c-3.6 0-6.5 2.8-6.5 6.3 0 4.7 6.5 12.7 6.5 12.7s6.5-8 6.5-12.7c0-3.5-2.9-6.3-6.5-6.3zm0 8.6a2.3 2.3 0 1 1 0-4.6 2.3 2.3 0 0 1 0 4.6z" />
+                    </svg>
                     {WEDDING_CONFIG.venue.ceremony.name}
                   </p>
-                  <p className="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-[#6b2d3c]">
+                  <p className="mt-2 font-serif text-lg capitalize text-[#3d2b22]">
                     {t('invite.dress')}
                   </p>
                   {item.shades.length > 0 ? (
@@ -509,7 +532,7 @@ export function IllustratedInvite() {
                             className="h-6 rounded-full border border-[#c4a574] shadow-sm"
                             style={{ backgroundColor: shade.color }}
                           />
-                          <p className="mt-1 text-center text-[11px] font-bold leading-tight text-[#3d2b22]">
+                          <p className="mt-1 text-center font-serif text-[11px] leading-tight text-[#5c4033]">
                             {shade.name}
                           </p>
                         </div>
@@ -520,14 +543,14 @@ export function IllustratedInvite() {
                       {item.lines.map((line) => (
                         <p
                           key={line}
-                          className="font-serif text-base font-bold leading-snug text-[#3d2b22]"
+                          className="font-serif text-[15px] leading-snug text-[#3d2b22]"
                         >
                           {line}
                         </p>
                       ))}
                     </div>
                   ) : (
-                    <p className="mt-1 font-serif text-base font-bold leading-snug text-[#3d2b22]">
+                    <p className="mt-1 font-serif text-[15px] leading-snug text-[#3d2b22]">
                       {item.dress}
                     </p>
                   )}

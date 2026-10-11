@@ -486,7 +486,11 @@ export function IllustratedInvite() {
                   />
                 ))}
                 <div
-                  className="pointer-events-none absolute z-10 text-center"
+                  className={`pointer-events-none absolute z-10 text-center ${
+                    item.paintedTitle
+                      ? 'rounded-2xl bg-[#fbf6ee] px-3 py-3 shadow-[0_8px_24px_rgba(90,50,20,0.08)]'
+                      : ''
+                  }`}
                   style={{
                     top: item.copyTop,
                     left: item.copyLeft,
@@ -509,7 +513,7 @@ export function IllustratedInvite() {
                   <p className="mt-1 text-sm text-[#5c463c]">
                     {WEDDING_CONFIG.venue.ceremony.name}
                   </p>
-                  <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-[#a68456]">
+                  <p className="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-[#6b2d3c]">
                     {t('invite.dress')}
                   </p>
                   {item.shades.length > 0 ? (
@@ -517,28 +521,28 @@ export function IllustratedInvite() {
                       {item.shades.map((shade) => (
                         <div key={shade.name}>
                           <div
-                            className="h-6 rounded-full border border-white/80 shadow-sm"
+                            className="h-6 rounded-full border border-[#c4a574] shadow-sm"
                             style={{ backgroundColor: shade.color }}
                           />
-                          <p className="mt-1 text-center text-[8px] leading-tight text-[#5c463c]">
+                          <p className="mt-1 text-center text-[11px] font-bold leading-tight text-[#3d2b22]">
                             {shade.name}
                           </p>
                         </div>
                       ))}
                     </div>
                   ) : item.lines.length > 0 ? (
-                    <div className="mt-0.5 space-y-0">
+                    <div className="mt-1 space-y-0.5">
                       {item.lines.map((line) => (
                         <p
                           key={line}
-                          className="font-serif text-xs leading-tight text-[#4d3b32]"
+                          className="font-serif text-base font-bold leading-snug text-[#3d2b22]"
                         >
                           {line}
                         </p>
                       ))}
                     </div>
                   ) : (
-                    <p className="mt-0.5 font-serif text-sm leading-snug text-[#4d3b32]">
+                    <p className="mt-1 font-serif text-base font-bold leading-snug text-[#3d2b22]">
                       {item.dress}
                     </p>
                   )}

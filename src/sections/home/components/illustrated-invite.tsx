@@ -95,7 +95,6 @@ export function IllustratedInvite() {
     departureTime: '',
   });
 
-  const couple = `${WEDDING_CONFIG.bride.name} & ${WEDDING_CONFIG.groom.name}`;
   const film = youtubeEmbed(WEDDING_CONFIG.film);
   const ceremonyMap = generateMapLink(WEDDING_CONFIG.venue.ceremony.mapQuery);
   const stayMap = generateMapLink(WEDDING_CONFIG.venue.reception.mapQuery);
@@ -390,61 +389,12 @@ export function IllustratedInvite() {
           />
           <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-transparent to-[#f7f0e6]" />
           <div className="relative">
-        <section className="px-8 pt-28 pb-14 text-center">
-          <p className="font-serif text-base tracking-wide text-[#3d2b22]">
-            {t('invite.invocation')}
-          </p>
+        <section className="px-6 pt-28 pb-14">
           <img
-            src={WEDDING_CONFIG.art.ganpati}
-            alt={t('invite.ganpati')}
-            className="mx-auto mt-4 h-56 w-auto object-contain"
+            src={WEDDING_CONFIG.art.invitation}
+            alt="Invitation from the Todmal and Thaluri families"
+            className="block h-auto w-full rounded-3xl shadow-sm"
           />
-          <p className="mt-8 font-serif text-xl italic text-[#3d2b22]">
-            {t('invite.invite-lead')}
-          </p>
-          <p className="mt-2 font-serif text-lg text-[#3d2b22]">
-            {t('invite.families')}
-          </p>
-          <p className="mt-5 font-serif text-base italic text-[#8a4a3a]">
-            {t('invite.daughter-of')}
-          </p>
-          <p className="mt-2 font-serif text-lg leading-relaxed whitespace-pre-line text-[#3d2b22]">
-            {t('invite.parents-todmal')}
-          </p>
-          <p className="mt-5 font-serif text-base italic text-[#8a4a3a]">
-            {t('invite.son-of')}
-          </p>
-          <p className="mt-2 font-serif text-lg leading-relaxed whitespace-pre-line text-[#3d2b22]">
-            {t('invite.parents-thaluri')}
-          </p>
-          <p className="mt-6 font-serif text-lg italic leading-snug text-[#3d2b22]">
-            {t('invite.invite-you')}
-          </p>
-          <p className="mt-5 font-serif text-base tracking-wide text-[#8a4a3a]">
-            {t('invite.bride-title')}
-          </p>
-          <p className="font-script mt-1 text-5xl leading-none text-[#6b2d3c]">
-            {t('invite.bride-name')}
-          </p>
-          <p className="mt-2 font-serif text-lg italic text-[#8a4a3a]">&</p>
-          <p className="mt-1 font-serif text-base tracking-wide text-[#8a4a3a]">
-            {t('invite.groom-title')}
-          </p>
-          <p className="font-script mt-1 text-5xl leading-none text-[#6b2d3c]">
-            {t('invite.groom-name')}
-          </p>
-          <div className="mt-8 rounded-3xl border border-[#eadcc4] bg-white/75 px-6 py-8 text-left shadow-sm">
-            <p className="font-serif text-2xl italic text-[#6b2d3c]">
-              {t('invite.letter-dear')}
-            </p>
-            <p className="mt-4 font-serif text-lg leading-relaxed text-[#4d3b32]">
-              {t('invite.letter-body')}
-            </p>
-            <p className="mt-6 font-serif text-lg italic text-[#6b2d3c]">
-              {t('invite.letter-sign')}
-            </p>
-            <p className="font-script mt-1 text-4xl text-[#8a4a3a]">{couple}</p>
-          </div>
         </section>
 
         <section className="px-6 pb-14">

@@ -411,13 +411,13 @@ export function IllustratedInvite() {
           <p className="mt-5 font-serif text-base italic text-[#8a4a3a]">
             {t('invite.daughter-of')}
           </p>
-          <p className="mt-2 whitespace-nowrap font-serif text-[13px] text-[#3d2b22]">
+          <p className="mt-2 whitespace-nowrap font-serif text-[13px] font-bold text-[#3d2b22]">
             {t('invite.parents-todmal')}
           </p>
           <p className="mt-5 font-serif text-base italic text-[#8a4a3a]">
             {t('invite.son-of')}
           </p>
-          <p className="mt-2 whitespace-nowrap font-serif text-[13px] text-[#3d2b22]">
+          <p className="mt-2 whitespace-nowrap font-serif text-[13px] font-bold text-[#3d2b22]">
             {t('invite.parents-thaluri')}
           </p>
           <p className="mt-6 font-serif text-lg italic leading-snug text-[#3d2b22]">

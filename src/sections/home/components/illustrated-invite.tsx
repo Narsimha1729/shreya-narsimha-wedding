@@ -100,14 +100,6 @@ export function IllustratedInvite() {
   const ceremonyMap = generateMapLink(WEDDING_CONFIG.venue.ceremony.mapQuery);
   const stayMap = generateMapLink(WEDDING_CONFIG.venue.reception.mapQuery);
 
-  const haldiShades = [
-    { name: t('invite.shade-yellow'), color: '#F4D35E' },
-    { name: t('invite.shade-mustard'), color: '#C69214' },
-    { name: t('invite.shade-orange'), color: '#C45C26' },
-    { name: t('invite.shade-turmeric'), color: '#E0A106' },
-    { name: t('invite.shade-saffron'), color: '#E08A2F' },
-  ];
-
   const events = [
     {
       title: t('invite.haldi'),
@@ -115,11 +107,11 @@ export function IllustratedInvite() {
       when: t('invite.late-afternoon'),
       image: WEDDING_CONFIG.art.haldi,
       petal: 'linear-gradient(135deg, #f6d36a, #e08a2f)',
-      paintedTitle: true,
+      artworkOnly: true,
       copyTop: '29%',
       copyLeft: '12%',
       copyRight: '12%',
-      shades: haldiShades,
+      shades: [] as { name: string; color: string }[],
       dress: '',
       lines: [] as string[],
     },
@@ -129,7 +121,7 @@ export function IllustratedInvite() {
       when: t('invite.evening'),
       image: WEDDING_CONFIG.art.sangeet,
       petal: 'linear-gradient(135deg, #f7c3d2, #c45c7a)',
-      paintedTitle: false,
+      artworkOnly: false,
       copyTop: '22%',
       copyLeft: '30%',
       copyRight: '6%',
@@ -143,7 +135,7 @@ export function IllustratedInvite() {
       when: t('invite.morning'),
       image: WEDDING_CONFIG.art.vidhi,
       petal: 'linear-gradient(135deg, #f3b0c4, #c44766)',
-      paintedTitle: false,
+      artworkOnly: false,
       copyTop: '18%',
       copyLeft: '14%',
       copyRight: '14%',
@@ -157,7 +149,7 @@ export function IllustratedInvite() {
       when: t('invite.afternoon'),
       image: WEDDING_CONFIG.art.mangal,
       petal: 'linear-gradient(135deg, #f6d98a, #c69214)',
-      paintedTitle: false,
+      artworkOnly: false,
       copyTop: '26%',
       copyLeft: '18%',
       copyRight: '10%',
@@ -485,26 +477,19 @@ export function IllustratedInvite() {
                     }}
                   />
                 ))}
+                {item.artworkOnly ? null : (
                 <div
-                  className={`pointer-events-none absolute z-10 text-center ${
-                    item.paintedTitle
-                      ? 'rounded-2xl bg-[#fbf6ee] px-3 py-3 shadow-[0_8px_24px_rgba(90,50,20,0.08)]'
-                      : ''
-                  }`}
+                  className="pointer-events-none absolute z-10 text-center"
                   style={{
                     top: item.copyTop,
                     left: item.copyLeft,
                     right: item.copyRight,
                   }}
                 >
-                  {item.paintedTitle ? null : (
-                    <h3 className="font-script text-[2.7rem] leading-none text-[#6b2d3c]">
-                      {item.title}
-                    </h3>
-                  )}
-                  <p
-                    className={`font-serif text-base text-[#4d3b32] ${item.paintedTitle ? '' : 'mt-1'}`}
-                  >
+                  <h3 className="font-script text-[2.7rem] leading-none text-[#6b2d3c]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1 font-serif text-base text-[#4d3b32]">
                     {item.date}
                   </p>
                   <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[#a68456]">
@@ -547,6 +532,7 @@ export function IllustratedInvite() {
                     </p>
                   )}
                 </div>
+                )}
               </article>
             ))}
           </div>

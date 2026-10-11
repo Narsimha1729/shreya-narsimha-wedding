@@ -108,6 +108,7 @@ export function IllustratedInvite() {
       image: WEDDING_CONFIG.art.haldi,
       petal: 'linear-gradient(135deg, #f6d36a, #e08a2f)',
       artworkOnly: true,
+      compact: false,
       copyTop: '29%',
       copyLeft: '12%',
       copyRight: '12%',
@@ -122,9 +123,10 @@ export function IllustratedInvite() {
       image: WEDDING_CONFIG.art.sangeet,
       petal: 'linear-gradient(135deg, #f7c3d2, #c45c7a)',
       artworkOnly: false,
-      copyTop: '22%',
-      copyLeft: '30%',
-      copyRight: '6%',
+      compact: false,
+      copyTop: '21%',
+      copyLeft: '32%',
+      copyRight: '12%',
       shades: [],
       dress: t('invite.sangeet-dress'),
       lines: [] as string[],
@@ -136,9 +138,10 @@ export function IllustratedInvite() {
       image: WEDDING_CONFIG.art.vidhi,
       petal: 'linear-gradient(135deg, #f3b0c4, #c44766)',
       artworkOnly: false,
-      copyTop: '18%',
-      copyLeft: '14%',
-      copyRight: '14%',
+      compact: false,
+      copyTop: '14%',
+      copyLeft: '20%',
+      copyRight: '20%',
       shades: [],
       dress: t('invite.vidhi-dress'),
       lines: [] as string[],
@@ -150,13 +153,13 @@ export function IllustratedInvite() {
       image: WEDDING_CONFIG.art.mangal,
       petal: 'linear-gradient(135deg, #f6d98a, #c69214)',
       artworkOnly: false,
-      copyTop: '26%',
-      copyLeft: '18%',
-      copyRight: '10%',
+      compact: true,
+      copyTop: '17%',
+      copyLeft: '30%',
+      copyRight: '18%',
       shades: [],
       dress: '',
       lines: [
-        t('invite.mangal-look'),
         t('invite.mangal-ladies'),
         t('invite.mangal-gentlemen'),
         t('invite.mangal-aunties'),
@@ -486,10 +489,14 @@ export function IllustratedInvite() {
                     right: item.copyRight,
                   }}
                 >
-                  <h3 className="font-script text-[2.7rem] leading-none text-[#6b2d3c]">
+                  <h3
+                    className={`font-script leading-none text-[#6b2d3c] ${item.compact ? 'text-[2.15rem]' : 'text-[2.7rem]'}`}
+                  >
                     {item.title}
                   </h3>
-                  <div className="mt-3 flex items-center gap-2 text-[#b08958]">
+                  <div
+                    className={`flex items-center gap-2 text-[#b08958] ${item.compact ? 'mt-1.5' : 'mt-3'}`}
+                  >
                     <span className="h-px flex-1 bg-current" />
                     <p className="font-serif text-[15px] whitespace-nowrap text-[#5c4033]">
                       {item.date}
